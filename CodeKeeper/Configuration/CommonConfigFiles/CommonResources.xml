@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <ConfigSection>
+    <Section SectionName="ResourceSection" Name="Resources" Provider="KeyValueProvider" />
+    <Section SectionName="ApplicationSection" Name="Settings" Provider="KeySubkeyProvider" />
+  </ConfigSection>
+  <ResourceSection>
+    <add key="ConnectionString" value="Data Source=G:\Application DBS\CodeKeeper\CodeKeeper_V1.db" />
+  </ResourceSection>
+  <ApplicationSection>
+    <DefaultLocationId value="0" />
+  </ApplicationSection>
+</Configuration>

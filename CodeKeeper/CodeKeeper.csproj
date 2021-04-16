@@ -144,6 +144,7 @@
     <Compile Include="Repository\SnippetsRepository.cs" />
     <Compile Include="Repository\TokensRepositlry.cs" />
     <Compile Include="Utilities\DocumentUtils.cs" />
+    <Compile Include="Utilities\NormalizeText.cs" />
     <Compile Include="Utilities\ParseUtils.cs" />
     <Compile Include="ViewModel\EditorWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

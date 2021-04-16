@@ -34,10 +34,13 @@ namespace CodeKeeper.Commands
             win.ShowDialog();
 
             Int64 id = win.ViewModel.NewSnippetId;
-            DataRow row = MasterRepository._Snippet.GetById(id.ToString());
-            DataRowView selecRow = MasterRepository._Snippet.DefaultView.Cast<DataRowView>().FirstOrDefault(a => a.Row == row);
+            if (id > 0)
+            {
+                DataRow row = MasterRepository._Snippet.GetById(id.ToString());
+                DataRowView selecRow = MasterRepository._Snippet.DefaultView.Cast<DataRowView>().FirstOrDefault(a => a.Row == row);
 
-            ViewModel.CurrentSnippet = selecRow;
+                ViewModel.CurrentSnippet = selecRow;
+            }
         }
     }
 }

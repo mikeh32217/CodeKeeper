@@ -13,7 +13,7 @@
             <Button 
                 Command="{Binding BCmd_NewEditorCommand}">New</Button>
             <Button 
-                Command="{Binding BCmd_SaveEditorCommand}">New</Button>
+                Command="{Binding BCmd_SaveEditorCommand}">Save</Button>
             <Button 
                 Command="{Binding BCmd_DeleteEditorCommand}">Delete</Button>
             <Button 

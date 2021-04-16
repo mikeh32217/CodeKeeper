@@ -28,23 +28,31 @@ namespace CodeKeeper.Repository
         public Int64 SaveSniipet(string tag)
         {
             Int64 id = 0;
-            string content = "None";
 
-            string sql = "INSERT INTO " + EntityDataTable.TableName + " (Tag, Content) VALUES" +
-                     " ('" + tag + "', '" + content + "')";
+            string sql = "INSERT INTO " + EntityDataTable.TableName + " (Tag, Language, Url, Content, " +
+                                                    "CreateDate, UpdateDate) VALUES" +
+                     " ('" + tag + "', " + 
+                             "'N/A', " + "'N/A', " + "'N/A', '" + DateTime.Now + "', '" + DateTime.Now + "')";
 
             try
             {
                 id = MasterRepository.ExecuteNonQuery(EntityDataTable, sql);
 
-                DataRow row = EntityDataTable.NewRow();
+                if (id > 0)
+                {
+                    DataRow row = EntityDataTable.NewRow();
 
-                row["Id"] = id;
-                row["Tag"] = tag;
-                row["Content"] = content;
+                    row["Id"] = id;
+                    row["Tag"] = tag;
+                    row["Language"] = "N/A";
+                    row["Url"] = "N/A";
+                    row["Content"] = "N/A";
+                    row["CreateDate"] = DateTime.Now;
+                    row["UpdateDate"] = DateTime.Now;
 
-                EntityDataTable.Rows.Add(row);
-                EntityDataTable.AcceptChanges();
+                    EntityDataTable.Rows.Add(row);
+                    EntityDataTable.AcceptChanges();
+                }
             }
             catch(Exception x)
             {
@@ -52,6 +60,13 @@ namespace CodeKeeper.Repository
             }
 
             return id;
+        }
+
+        public void UpdateSniipet(DataRowView drv)
+        {
+            string content = Utilities.NormalizeText.Normalize(drv["Content"].ToString());
+
+            // TODO Finish
         }
     }
 }

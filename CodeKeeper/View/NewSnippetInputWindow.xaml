@@ -1,0 +1,21 @@
+﻿<Window x:Class="CodeKeeper.View.NewSnippetInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CodeKeeper.View"
+        mc:Ignorable="d"
+        Title="Enter New Snippet Name" Height="120" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+            <TextBox Text="{Binding NewSnippetName}" Margin="20 5" Height="24"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10" 
+                    HorizontalAlignment="Center">
+            <Button Margin="10 0" Command="{Binding BCmd_NewSnippetCommand}">Accept</Button>
+            <Button IsCancel="True">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

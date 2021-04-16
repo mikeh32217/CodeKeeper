@@ -36,7 +36,7 @@ namespace CodeKeeper.ViewModel
 
     private void MessageCallback(GenericMessage msg)
         {
-            Utilities.DocumentHelpers.InsertTextInFile(msg.Message, 10, "Help Me\nI think that I am falling\n");
+            Utilities.DocumentUtils.InsertTextInFile(msg.Message, 10, "Help Me\nI think that I am falling\n");
         }
     }
 }

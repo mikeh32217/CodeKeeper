@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace CodeKeeper.Utilities
 {
-    public class DocumentHelpers
+    public class DocumentUtils
     {
         public static bool InsertTextInFile(string path, int line, string txt)
         {

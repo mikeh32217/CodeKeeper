@@ -67,14 +67,14 @@ namespace CodeKeeper.Repository
             return "select * from " + EntityDataTable.TableName + " where " + EntityDataTable.TableName + "id = 0";
         }
 
-        virtual public string GetTableNameString()
+        virtual public string GetByIdString()
         {
-            return EntityDataTable.TableName;
+            return EntityDataTable.TableName + "Id";
         }
 
         virtual public DataRow GetById(string id)
         {
-            string idStr = GetTableNameString() + "Id";
+            string idStr = GetByIdString();
 
             // First check the rows that are already loaded
             DataRow[] rows = EntityDataTable.Select(idStr + "='" + id + "'");
@@ -89,7 +89,6 @@ namespace CodeKeeper.Repository
 
             // Finally return null indicating that we couldn't find it.
             return null;
-
         }
 
         virtual public DataRow CreateNewRow()

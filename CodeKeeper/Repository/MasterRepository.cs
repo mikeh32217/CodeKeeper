@@ -28,7 +28,7 @@ namespace CodeKeeper.Repository
 #endif
 
             _Snippet = new SnippetsRepository("Snippets", true);
-            _Token = new TokensRepository("Tokens", false);
+            _Token = new TokensRepository("Tokens", true);
         }
 
         public static void LoadTable(RepositoryBase tab)

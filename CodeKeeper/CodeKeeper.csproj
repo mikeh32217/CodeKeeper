@@ -121,10 +121,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\BCmd_InsertTokenCommand.cs" />
+    <Compile Include="Commands\BCmd_DeleteEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_NewEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_NewSnippetCommand.cs" />
     <Compile Include="Commands\BCmd_OpenFileCommand.cs" />
     <Compile Include="Commands\BCmd_OpenProjectDirectoryCommand.cs" />
     <Compile Include="Commands\BCmd_OpenSnippetEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_PreviewCommand.cs" />
+    <Compile Include="Commands\BCmd_SaveEditorCommand.cs" />
+    <Compile Include="Commands\SnippetListViewSelectionChangedCommand.cs" />
     <Compile Include="Configuration\ConfigMgr.cs" />
     <Compile Include="Configuration\CustomEventArgs\OnvalueChangedEventArgs.cs" />
     <Compile Include="Configuration\Providers\CustomConfigurationManager.cs" />
@@ -138,12 +143,21 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\SnippetsRepository.cs" />
     <Compile Include="Repository\TokensRepositlry.cs" />
-    <Compile Include="Utilities\DocumentHelpers.cs" />
+    <Compile Include="Utilities\DocumentUtils.cs" />
+    <Compile Include="Utilities\ParseUtils.cs" />
     <Compile Include="ViewModel\EditorWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\NewSnippetWindowViewModel.cs" />
+    <Compile Include="ViewModel\PreviewWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\EditorWindow.xaml.cs">
       <DependentUpon>EditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewSnippetInputWindow.xaml.cs">
+      <DependentUpon>NewSnippetInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PreviewWindow.xaml.cs">
+      <DependentUpon>PreviewWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -157,7 +171,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\StyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewSnippetInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PreviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,9 +15,20 @@ namespace CodeKeeper.ViewModel
         public Window ParentWindow { get; set; }
 
         public DataView SnippetView { get; set; }
-        public DataRowView CurrentSnippet { get; set; }
 
-        public BCmd_InsertTokenCommand BCmd_InsertTokenCommand { get; set; }
+        private DataRowView _currentSnippet;
+
+        public DataRowView CurrentSnippet
+        {
+            get { return _currentSnippet; }
+            set { SetProperty(ref _currentSnippet, value); }
+        }
+
+        public BCmd_NewEditorCommand BCmd_NewEditorCommand { get; set; }
+        public BCmd_DeleteEditorCommand BCmd_DeleteEditorCommand { get; set; }
+        public BCmd_PreviewCommand BCmd_PreviewCommand { get; set; }
+
+        public SnippetListViewSelectionChangedCommand SnippetListViewSelectionChangedCommand { get; set; }
 
         public EditorWindowViewModel(Window pwin)
         {
@@ -26,7 +37,11 @@ namespace CodeKeeper.ViewModel
             SnippetView = MasterRepository._Snippet.GetAllAsView();
             CurrentSnippet = SnippetView[0];
 
-            BCmd_InsertTokenCommand = new BCmd_InsertTokenCommand(this);
+            BCmd_NewEditorCommand = new BCmd_NewEditorCommand(this);
+            BCmd_DeleteEditorCommand = new BCmd_DeleteEditorCommand(this);
+            BCmd_PreviewCommand = new BCmd_PreviewCommand(this);
+
+            SnippetListViewSelectionChangedCommand = new SnippetListViewSelectionChangedCommand(this);
         }
     }
 }

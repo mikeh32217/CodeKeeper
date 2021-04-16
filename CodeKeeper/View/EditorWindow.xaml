@@ -7,16 +7,38 @@
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
         Title="EditorWindow" Height="450" Width="800">
-    
+
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
             <Button 
-                Command="{Binding BCmd_InsertTokenCommand}" 
-                CommandParameter="{Binding SelectionStart, ElementName=tb}">Help</Button>
+                Command="{Binding BCmd_NewEditorCommand}">New</Button>
+            <Button 
+                Command="{Binding BCmd_SaveEditorCommand}">New</Button>
+            <Button 
+                Command="{Binding BCmd_DeleteEditorCommand}">Delete</Button>
+            <Button 
+                Command="{Binding BCmd_PreviewCommand}">Preview</Button>
         </ToolBar>
-        <TextBox Name="tb" AcceptsReturn="True" DataContext="{Binding CurrentSnippet}"
-                 TextWrapping="Wrap" SpellCheck.IsEnabled="True"
-            Text="{Binding Path=[Content], Mode=OneWay}">
-        </TextBox>
+        <DockPanel DockPanel.Dock="Bottom" >
+            <ListView DockPanel.Dock="Left" DataContext="{Binding SnippetView}"
+                      Name="SnippetListView"
+                      Width="140"
+                      SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
+                            Path=DataContext.CurrentSnippet}"
+                      ItemsSource="{Binding}">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                        <GridView.Columns>
+                            <GridViewColumn DisplayMemberBinding="{Binding Tag}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBox Name="tb" DockPanel.Dock="Right"
+                     AcceptsReturn="True" DataContext="{Binding CurrentSnippet}"
+                     TextWrapping="Wrap" SpellCheck.IsEnabled="True"
+                Text="{Binding Path=[Content], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </TextBox>
+        </DockPanel>
     </DockPanel>
 </Window>

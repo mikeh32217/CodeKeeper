@@ -17,5 +17,14 @@ namespace CodeKeeper.Repository
             return "select * from " + EntityDataTable.TableName + " where TokenId = 0";
         }
 
+        public string GetTokenByTag(string tag)
+        {
+            EntityDataTable.DefaultView.RowFilter = "Tag = '" + tag + "'";
+
+            if (EntityDataTable.DefaultView.Count > 0)
+                return EntityDataTable.DefaultView[0].Row["Content"].ToString();
+
+            return string.Empty;
+        }
     }
 }

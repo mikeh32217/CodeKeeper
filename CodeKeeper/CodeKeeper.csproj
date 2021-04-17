@@ -143,6 +143,7 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\SnippetsRepository.cs" />
     <Compile Include="Repository\TokensRepositlry.cs" />
+    <Compile Include="Utilities\DateTimeFormatter.cs" />
     <Compile Include="Utilities\DocumentUtils.cs" />
     <Compile Include="Utilities\NormalizeText.cs" />
     <Compile Include="Utilities\ParseUtils.cs" />

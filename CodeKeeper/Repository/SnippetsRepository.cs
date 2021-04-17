@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeKeeper.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -29,10 +30,14 @@ namespace CodeKeeper.Repository
         {
             Int64 id = 0;
 
+            string date = Utilities.DateTimeFormatter.DateTimeFormat(DateTime.Now.ToString());
+            string defcon = ConfigMgr.Instance.settingProvider.GetSingleValue("DefaultContent", "content");
+            string deflang = ConfigMgr.Instance.settingProvider.GetSingleValue("DefaultLanguage", "language");
+
             string sql = "INSERT INTO " + EntityDataTable.TableName + " (Tag, Language, Url, Content, " +
                                                     "CreateDate, UpdateDate) VALUES" +
                      " ('" + tag + "', " + 
-                             "'N/A', " + "'N/A', " + "'N/A', '" + DateTime.Now + "', '" + DateTime.Now + "')";
+                             "'" + deflang + "', " + "'N/A', " + "'" + defcon + "', '" + date + "', '" + date + "')";
 
             try
             {
@@ -44,9 +49,9 @@ namespace CodeKeeper.Repository
 
                     row["Id"] = id;
                     row["Tag"] = tag;
-                    row["Language"] = "N/A";
+                    row["Language"] = deflang;
                     row["Url"] = "N/A";
-                    row["Content"] = "N/A";
+                    row["Content"] = defcon;
                     row["CreateDate"] = DateTime.Now;
                     row["UpdateDate"] = DateTime.Now;
 
@@ -62,11 +67,62 @@ namespace CodeKeeper.Repository
             return id;
         }
 
-        public void UpdateSniipet(DataRowView drv)
+        public void UpdateSnippet(DataRowView drv)
         {
-            string content = Utilities.NormalizeText.Normalize(drv["Content"].ToString());
+            if (drv == null)
+            {
+                MessageBox.Show("UpdateSnippet: drv is null");
+                return;
+            }
 
-            // TODO Finish
+            string id = drv["Id"].ToString();
+            DataRow row = MasterRepository._Snippet.GetById(id);
+            if (row == null)
+            {
+                MessageBox.Show("UpdateSnippet: Row with Id <" + id + "> not found");
+                return;
+            }
+
+            try
+            {
+                string content = Utilities.NormalizeText.Normalize(drv["Content"].ToString());
+                string sql = "UPDATE " + EntityDataTable.TableName + " SET " +
+                    "Content='" + content + "', " +
+                    "Language='" + drv["Language"] + "', " +
+                    "Url='" + drv["Url"] + "', " +
+                    "UpdateDate='" + Utilities.DateTimeFormatter.DateTimeFormat(DateTime.Now.ToString()) + "'" +
+                    " WHERE Id=" + drv["Id"].ToString();
+
+                MasterRepository.ExecuteNonQuery(EntityDataTable, sql);
+
+                EntityDataTable.AcceptChanges();
+
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("UpdateSnippet: " + x.Message);
+            }
+        }
+
+        public void Delete(string id)
+        {
+            DataRow row = GetById(id);
+
+            if (row != null)
+            {
+                try
+                {
+                    string sql = "delete from " + EntityDataTable.TableName + " where Id = " + id;
+                    MasterRepository.ExecuteNonQuery(EntityDataTable, sql);
+
+                    row.Delete();
+                    EntityDataTable.AcceptChanges();
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show("PartRepository:Delete - " + x.Message);
+                }
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CodeKeeper.Repository;
+using CodeKeeper.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,13 @@ namespace CodeKeeper.Commands
     {
         public event EventHandler CanExecuteChanged;
 
+        public EditorWindowViewModel ViewModel { get; set; }
+
+        public BCmd_SaveEditorCommand(EditorWindowViewModel vm)
+        {
+            ViewModel = vm;
+        }
+
         public bool CanExecute(object parameter)
         {
             return true;
@@ -18,7 +27,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            // TODO Save snippet
+            MasterRepository._Snippet.UpdateSnippet(ViewModel.CurrentSnippet);
         }
     }
 }

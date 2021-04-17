@@ -25,6 +25,7 @@ namespace CodeKeeper.ViewModel
         }
 
         public BCmd_NewEditorCommand BCmd_NewEditorCommand { get; set; }
+        public BCmd_SaveEditorCommand BCmd_SaveEditorCommand { get; set; }
         public BCmd_DeleteEditorCommand BCmd_DeleteEditorCommand { get; set; }
         public BCmd_PreviewCommand BCmd_PreviewCommand { get; set; }
 
@@ -38,6 +39,7 @@ namespace CodeKeeper.ViewModel
             CurrentSnippet = SnippetView[0];
 
             BCmd_NewEditorCommand = new BCmd_NewEditorCommand(this);
+            BCmd_SaveEditorCommand = new BCmd_SaveEditorCommand(this);
             BCmd_DeleteEditorCommand = new BCmd_DeleteEditorCommand(this);
             BCmd_PreviewCommand = new BCmd_PreviewCommand(this);
 

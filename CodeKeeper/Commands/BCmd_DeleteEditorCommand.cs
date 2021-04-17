@@ -1,9 +1,11 @@
-﻿using CodeKeeper.ViewModel;
+﻿using CodeKeeper.Repository;
+using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CodeKeeper.Commands
@@ -25,7 +27,15 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            // TODO Delete that puppy
+            if (ViewModel.CurrentSnippet != null)
+            {
+                if (MessageBox.Show("You are about to delete a snippet, continue?", "Continue?",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    MasterRepository._Snippet.Delete(ViewModel.CurrentSnippet["Id"].ToString());
+                }
+            }
         }
     }
 }

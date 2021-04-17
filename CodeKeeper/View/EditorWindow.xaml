@@ -6,7 +6,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"                      
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
-        Title="EditorWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="EditorWindow" Height="450" Width="800" >
 
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
@@ -34,7 +35,7 @@
                             <ListView.View>
                                 <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
                                     <GridView.Columns>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Tag}"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tag}"/>
                                     </GridView.Columns>
                                 </GridView>
                             </ListView.View>
@@ -43,11 +44,26 @@
                 </StackPanel>
             </Border>
             <Grid DataContext="{Binding CurrentSnippet}">
-                <TextBox Name="tb" DockPanel.Dock="Right"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap" SpellCheck.IsEnabled="True"
-                    Text="{Binding Path=[Content], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                </TextBox>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="5 0">
+                    <Label VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Tag:</Label>
+                    <TextBox Padding="2 1 2 1" VerticalAlignment="Center" Width="120" Text="{Binding Tag}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5 0"  Grid.Row="1">
+                    <Label VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Language:</Label>
+                    <TextBox Padding="2 1 2 1" VerticalAlignment="Center" Width="90" Text="{Binding Language}"/>
+                </StackPanel>
+                <ScrollViewer DockPanel.Dock="Right" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <TextBox Name="tb" Padding="5"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap" SpellCheck.IsEnabled="True"
+                        Text="{Binding Path=[Content], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                </ScrollViewer>
             </Grid>
         </DockPanel>
     </DockPanel>

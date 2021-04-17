@@ -20,25 +20,35 @@
                 Command="{Binding BCmd_PreviewCommand}">Preview</Button>
         </ToolBar>
         <DockPanel DockPanel.Dock="Bottom" >
-            <ListView DockPanel.Dock="Left" DataContext="{Binding SnippetView}"
-                      Name="SnippetListView"
-                      Width="140"
-                      SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
-                            Path=DataContext.CurrentSnippet}"
-                      ItemsSource="{Binding}">
-                <ListView.View>
-                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                        <GridView.Columns>
-                            <GridViewColumn DisplayMemberBinding="{Binding Tag}"/>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <TextBox Name="tb" DockPanel.Dock="Right"
-                     AcceptsReturn="True" DataContext="{Binding CurrentSnippet}"
-                     TextWrapping="Wrap" SpellCheck.IsEnabled="True"
-                Text="{Binding Path=[Content], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            </TextBox>
+            <Border Visibility="Visible" BorderThickness="1" BorderBrush="LightSteelBlue">
+                <StackPanel Margin="3">
+                    <Label  Height="25" Content="Tags" Background="LightSlateGray" Foreground="White" />
+                    <Separator Height="5"/>
+                    <Grid>
+                        <ListView DockPanel.Dock="Left" DataContext="{Binding SnippetView}"
+                              Name="SnippetListView"
+                              Width="140"
+                              SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
+                                Path=DataContext.CurrentSnippet}"
+                                ItemsSource="{Binding}">
+                            <ListView.View>
+                                <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
+                                    <GridView.Columns>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Tag}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Grid DataContext="{Binding CurrentSnippet}">
+                <TextBox Name="tb" DockPanel.Dock="Right"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap" SpellCheck.IsEnabled="True"
+                    Text="{Binding Path=[Content], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
+            </Grid>
         </DockPanel>
     </DockPanel>
 </Window>

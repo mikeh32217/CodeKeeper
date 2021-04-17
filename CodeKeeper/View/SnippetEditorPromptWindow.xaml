@@ -1,0 +1,39 @@
+﻿<Window x:Class="CodeKeeper.View.SnippetEditorPromptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CodeKeeper.View"
+        mc:Ignorable="d"
+        Title="Prompt Window" Height="120" Width="600">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28" />
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="16" Content="{Binding PromptText}"/>
+            <TextBox VerticalContentAlignment="Center" Grid.Column="1" Margin="5 5 10 0"
+                     Text="{Binding PromptTextBoxText}"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" 
+                    Margin="5" Grid.Row="2" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center">
+            <Button IsDefault="True" 
+                    Command="{Binding BCmd_SnippetEditorWindowGeneriCommand}"
+                    CommandParameter="Accept"
+                    Margin="10 0" Width="100">Accept</Button>
+            <Button 
+                    Command="{Binding BCmd_SnippetEditorWindowGeneriCommand}"
+                    CommandParameter="Cancel"
+                    Width="100">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

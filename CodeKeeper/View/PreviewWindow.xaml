@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="PreviewWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="{Binding Content}"></TextBlock>
+        <TextBlock Text="{Binding Content}" Margin="20"></TextBlock>
     </Grid>
 </Window>

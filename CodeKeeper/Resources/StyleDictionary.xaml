@@ -2,22 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CodeKeeper.Resources">
 
-    <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                    <Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource MahApps.Brushes.Text}" 
-                            Background="Transparent">
-                        <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Height="26"
-                                   Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Left" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
-        <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="12" />
+    <Style x:Key="GridViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Visibility" Value="Collapsed" />
     </Style>
-    
+
 </ResourceDictionary>

@@ -129,6 +129,7 @@
     <Compile Include="Commands\BCmd_OpenSnippetEditorCommand.cs" />
     <Compile Include="Commands\BCmd_PreviewCommand.cs" />
     <Compile Include="Commands\BCmd_SaveEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_SnippetEditorWindowGeneriCommand.cs" />
     <Compile Include="Commands\SnippetListViewSelectionChangedCommand.cs" />
     <Compile Include="Configuration\ConfigMgr.cs" />
     <Compile Include="Configuration\CustomEventArgs\OnvalueChangedEventArgs.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NewSnippetWindowViewModel.cs" />
     <Compile Include="ViewModel\PreviewWindowViewModel.cs" />
+    <Compile Include="ViewModel\SnippetEditorPromptWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\EditorWindow.xaml.cs">
       <DependentUpon>EditorWindow.xaml</DependentUpon>
@@ -160,6 +162,9 @@
     </Compile>
     <Compile Include="View\PreviewWindow.xaml.cs">
       <DependentUpon>PreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SnippetEditorPromptWindow.xaml.cs">
+      <DependentUpon>SnippetEditorPromptWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SnippetEditorPromptWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

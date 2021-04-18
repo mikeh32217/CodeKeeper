@@ -7,46 +7,40 @@
         xmlns:local="clr-namespace:CodeKeeper"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding Version}" Height="450" Width="800">
     
     
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Open"/>
+                <MenuItem Header="Open Folder"/>
+                <MenuItem Header="Open File" />
+                <MenuItem Header="Options" />
                 <MenuItem Header="Exit"/>
             </MenuItem>
             <MenuItem Header="Editor">
-                <MenuItem Header="Open"/>
+                <MenuItem Header="Open Snippet Editor" Command="{Binding BCmd_OpenSnippetEditorCommand}" />
+                <MenuItem Header="Open Tag Editor" Command="{Binding BCmd_OpenTagEditorCommand}" />
                 <MenuItem Header="Save"/>
             </MenuItem>
-            <MenuItem Header="Token Editor">
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
-            </MenuItem>
-            <MenuItem Header="View">
-                <MenuItem Header="By Language" />
-                <MenuItem Header="By Tag"/>
-                <MenuItem Header="Custom"/>
-            </MenuItem>
-            <MenuItem Header="Options"/>
         </Menu>
-        <ToolBar DockPanel.Dock="Top" Height="24">
-            <Button  Command="{Binding BCmd_OpenFileCommand}">Open</Button>
-            <Button>Save</Button>
-            <Button>Exit</Button>
+        <ToolBar DockPanel.Dock="Top" Height="29">
+            <Button  Command="{Binding BCmd_OpenFileCommand}">
+                <Image Source="Images/document.png"/>
+            </Button>
+            <Button>
+                <Image Source="Images/folder.png"/>
+            </Button>
+            <Button>
+                <Image Source="Images/options.png"/>
+            </Button>
             <Separator/>
-            <Button Command="{Binding BCmd_OpenProjectDirectoryCommand}">Open</Button>
-            <Button>Save</Button>
-            <Separator/>
-            <Button Command="{Binding BCmd_OpenSnippetEditorCommand}">Open</Button>
-            <Button>Save</Button>
-            <Separator/>
-            <Button>By Lang</Button>
-            <Button>By Tag</Button>
-            <Button>Custom</Button>
-            <Separator/>
-            <Button>Options</Button>
+            <Button Command="{Binding BCmd_OpenSnippetEditorCommand}">
+                <Image Source="Images/snippet.png"/>
+           </Button>
+            <Button Command="{Binding BCmd_OpenTagEditorCommand}">
+                <Image Source="Images/tag.png"/>
+            </Button>
         </ToolBar>
         <StackPanel DockPanel.Dock="Bottom">
 

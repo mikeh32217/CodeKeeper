@@ -121,13 +121,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\BCmd_DeleteTagEditorCommand.cs" />
     <Compile Include="Commands\BCmd_DeleteEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_NewTagEditorCommand .cs" />
     <Compile Include="Commands\BCmd_NewEditorCommand.cs" />
     <Compile Include="Commands\BCmd_NewSnippetCommand.cs" />
     <Compile Include="Commands\BCmd_OpenFileCommand.cs" />
     <Compile Include="Commands\BCmd_OpenProjectDirectoryCommand.cs" />
     <Compile Include="Commands\BCmd_OpenSnippetEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_OpenTagEditorCommand.cs" />
     <Compile Include="Commands\BCmd_PreviewCommand.cs" />
+    <Compile Include="Commands\BCmd_SaveTagEditorCommand.cs" />
     <Compile Include="Commands\BCmd_SaveEditorCommand.cs" />
     <Compile Include="Commands\BCmd_SnippetEditorWindowGeneriCommand.cs" />
     <Compile Include="Commands\SnippetListViewSelectionChangedCommand.cs" />
@@ -153,6 +157,7 @@
     <Compile Include="ViewModel\NewSnippetWindowViewModel.cs" />
     <Compile Include="ViewModel\PreviewWindowViewModel.cs" />
     <Compile Include="ViewModel\SnippetEditorPromptWindowViewModel.cs" />
+    <Compile Include="ViewModel\TagEditorWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\EditorWindow.xaml.cs">
       <DependentUpon>EditorWindow.xaml</DependentUpon>
@@ -165,6 +170,9 @@
     </Compile>
     <Compile Include="View\SnippetEditorPromptWindow.xaml.cs">
       <DependentUpon>SnippetEditorPromptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TagEditorWindow.xaml.cs">
+      <DependentUpon>TagEditorWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\TagEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -226,7 +238,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\document.png" />
+    <Resource Include="Images\options.png" />
+    <Resource Include="Images\snippet.png" />
+    <Resource Include="Images\tag.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Configuration\CommonConfigFiles\CommonResources.xml" />
     <Resource Include="Configuration\Readme.txt" />

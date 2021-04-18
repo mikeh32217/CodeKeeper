@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="EditorWindow" Height="450" Width="800" >
+        Title="Snippet Editor" Height="450" Width="800" >
 
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">

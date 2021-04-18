@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
          WindowStartupLocation="CenterScreen"
-        Title="PreviewWindow" Height="450" Width="800">
+        Title="Preview Window" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="{Binding Content}" Margin="20"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="36"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Margin="10 5" VerticalScrollBarVisibility="Auto">
+            <TextBlock Text="{Binding Content}"></TextBlock>
+        </ScrollViewer>
+        <Button IsCancel="True" Content="Close" Height="26" Grid.Row="1" Margin="10 0"/>
     </Grid>
 </Window>

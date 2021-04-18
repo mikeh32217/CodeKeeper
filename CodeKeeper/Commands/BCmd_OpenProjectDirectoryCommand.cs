@@ -35,6 +35,5 @@ namespace CodeKeeper.Commands
             else
                 FullPath = string.Empty;
         }
-
     }
 }

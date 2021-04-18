@@ -68,4 +68,99 @@
         </Style.Triggers>
     </Style >
 
+    <Color x:Key="ToolbarBackgroundColor">#ff7A92A7</Color>
+    <Color x:Key="ToolbarBorderColor">#FFADBBC9</Color>
+    <Color x:Key="TextColor">#CCF5F3ED</Color>
+
+    <LinearGradientBrush x:Key="HeaderLinearBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#FF879ba3" Offset="0.0"/>
+        <GradientStop Color="#FF7d9199" Offset="0.35"/>
+        <GradientStop Color="#FF788c94" Offset="0.5" />
+        <GradientStop Color="#FF495a61" Offset="1.0"/>
+    </LinearGradientBrush>
+    
+    <SolidColorBrush x:Key="ToolbatBackgroundBrush" Color="{StaticResource ToolbarBackgroundColor}" />
+    <SolidColorBrush x:Key="ToolbarBorderBrush" Color="{StaticResource ToolbarBorderColor}" />
+    <SolidColorBrush x:Key="HeaderBackgroundColor" Color="{StaticResource ToolbarBackgroundColor}"/>
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}" />
+    
+    <Style x:Key="BorderlessButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Margin" Value="2 0" />
+        <Setter Property="Opacity" Value="1.0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Button.Opacity" Value="0.25" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ToolBarContainer" TargetType="{x:Type Border}">
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="Height" Value="38" />
+        <Setter Property="Background" Value="{StaticResource HeaderLinearBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ToolbarBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0 0 0 10" />
+    </Style>
+
+    <Style x:Key="ToolBarSeparator"
+           TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="1,0,0,0"/>
+        <Setter Property="BorderBrush" Value="#FFC5C5C5"/>
+        <Setter Property="Margin" Value="5,2"/>
+        <Setter Property="Width" Value="2"/>
+        <Setter Property="Background" Value="{StaticResource ToolbarBorderBrush}"/>
+    </Style>
+
+    <Style x:Key="ToolbarButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="24"/>
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Margin" Value="3 0"/>
+        <Setter Property="Background" Value="{StaticResource ToolbatBackgroundBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="DimGray" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="Silver"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Margin" Value="1" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="Orange"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.85"/>
+                <Setter Property="Background" Value="Gray"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" Value="0.65"/>
+                <Setter Property="Foreground" Value="Gray" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
 </ResourceDictionary>

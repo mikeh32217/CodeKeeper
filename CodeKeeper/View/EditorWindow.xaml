@@ -9,21 +9,33 @@
         WindowStartupLocation="CenterScreen"
         Title="Snippet Editor" Height="450" Width="800" >
 
-    <DockPanel>
-        <ToolBar DockPanel.Dock="Top">
-            <Button 
-                Command="{Binding BCmd_NewEditorCommand}">New</Button>
-            <Button 
-                Command="{Binding BCmd_SaveEditorCommand}">Save</Button>
-            <Button 
-                Command="{Binding BCmd_DeleteEditorCommand}">Delete</Button>
-            <Button 
-                Command="{Binding BCmd_PreviewCommand}">Preview</Button>
-        </ToolBar>
+    <DockPanel Margin="0 0 0 5">
+        <Border Style="{StaticResource ToolBarContainer}" DockPanel.Dock="Top">
+            <StackPanel x:Name="TagEditorToolBar" Orientation="Horizontal">
+                <Button Style="{StaticResource BorderlessButton}"
+                Command="{Binding BCmd_NewEditorCommand}">
+                    <Image Source="pack://application:,,,/Images/new.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                Command="{Binding BCmd_SaveEditorCommand}">
+                    <Image Source="pack://application:,,,/Images/save.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                Command="{Binding BCmd_DeleteEditorCommand}">
+                    <Image Source="pack://application:,,,/Images/delete.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                Command="{Binding BCmd_PreviewCommand}">
+                    <Image Source="pack://application:,,,/Images/preview.png"/>
+                </Button>
+            </StackPanel>
+        </Border>
         <DockPanel DockPanel.Dock="Bottom" >
             <Border Visibility="Visible" BorderThickness="1" BorderBrush="LightSteelBlue">
                 <StackPanel Margin="3">
-                    <Label  Height="25" Content="Tags" Background="LightSlateGray" Foreground="White" />
+                    <Label  Height="25" Content="Tags" 
+                            Background="{StaticResource HeaderLinearBrush}" 
+                            Foreground="{StaticResource TextBrush}" />
                     <Separator Height="5"/>
                     <Grid>
                         <ListView DockPanel.Dock="Left" DataContext="{Binding SnippetView}"
@@ -43,13 +55,14 @@
                     </Grid>
                 </StackPanel>
             </Border>
-            <Grid DataContext="{Binding CurrentSnippet}">
+            <Grid DataContext="{Binding CurrentSnippet}" Margin="5 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="34"/>
                     <RowDefinition Height="34"/>
+                    <RowDefinition Height="5"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Margin="5 0">
+                <StackPanel Orientation="Horizontal">
                     <Label VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Tag:</Label>
                     <TextBox Padding="2 1 2 1" VerticalAlignment="Center" Width="120" Text="{Binding Tag}"/>
                 </StackPanel>
@@ -57,7 +70,7 @@
                     <Label VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Language:</Label>
                     <TextBox Padding="2 1 2 1" VerticalAlignment="Center" Width="90" Text="{Binding Language}"/>
                 </StackPanel>
-                <ScrollViewer DockPanel.Dock="Right" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer DockPanel.Dock="Right" Grid.Row="3" VerticalScrollBarVisibility="Auto">
                     <TextBox Name="tb" Padding="5"
                              AcceptsReturn="True"
                              TextWrapping="Wrap" SpellCheck.IsEnabled="True"

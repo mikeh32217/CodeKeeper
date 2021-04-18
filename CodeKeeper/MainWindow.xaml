@@ -24,24 +24,29 @@
                 <MenuItem Header="Save"/>
             </MenuItem>
         </Menu>
-        <ToolBar DockPanel.Dock="Top" Height="29">
-            <Button  Command="{Binding BCmd_OpenFileCommand}">
-                <Image Source="Images/document.png"/>
-            </Button>
-            <Button>
-                <Image Source="Images/folder.png"/>
-            </Button>
-            <Button>
-                <Image Source="Images/options.png"/>
-            </Button>
-            <Separator/>
-            <Button Command="{Binding BCmd_OpenSnippetEditorCommand}">
-                <Image Source="Images/snippet.png"/>
-           </Button>
-            <Button Command="{Binding BCmd_OpenTagEditorCommand}">
-                <Image Source="Images/tag.png"/>
-            </Button>
-        </ToolBar>
+        <Border Style="{StaticResource ToolBarContainer}" DockPanel.Dock="Top">
+            <StackPanel x:Name="TagEditorToolBar" Orientation="Horizontal">
+                <Button Style="{StaticResource BorderlessButton}"
+                        Command="{Binding BCmd_OpenFileCommand}">
+                    <Image Source="Images/document.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}">
+                    <Image Source="Images/folder.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}">
+                    <Image Source="Images/options.png"/>
+                </Button>
+                <Separator/>
+                <Button Style="{StaticResource BorderlessButton}"
+                    Command="{Binding BCmd_OpenSnippetEditorCommand}">
+                    <Image Source="Images/snippet.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                    Command="{Binding BCmd_OpenTagEditorCommand}">
+                    <Image Source="Images/tag.png"/>
+                </Button>
+            </StackPanel>
+        </Border>
         <StackPanel DockPanel.Dock="Bottom">
 
         </StackPanel>

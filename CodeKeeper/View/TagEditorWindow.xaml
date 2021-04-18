@@ -5,21 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
-        Title="TagEditorWindow" Height="450" Width="800">
+        Title="Tag Editor" Height="450" Width="600">
 
-    <DockPanel>
-        <ToolBar DockPanel.Dock="Top">
-            <Button 
-                Command="{Binding BCmd_NewTagEditorCommand}">New</Button>
-            <Button 
-                Command="{Binding BCmd_SaveTagEditorCommand}">Save</Button>
-            <Button 
-                Command="{Binding BCmd_DeleteTagEditorCommand}">Delete</Button>
-        </ToolBar>
+    <DockPanel Margin="0 0 0 5">
+        <Border Style="{StaticResource ToolBarContainer}" DockPanel.Dock="Top">
+            <StackPanel x:Name="TagEditorToolBar" Orientation="Horizontal">
+                <Button Style="{StaticResource BorderlessButton}"
+                    Command="{Binding BCmd_NewTagEditorCommand}">
+                    <Image Source="pack://application:,,,/Images/new.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                Command="{Binding BCmd_SaveTagEditorCommand}">
+                    <Image Source="pack://application:,,,/Images/save.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                Command="{Binding BCmd_DeleteTagEditorCommand}">
+                    <Image Source="pack://application:,,,/Images/delete.png"/>
+                </Button>
+            </StackPanel>
+        </Border>
         <DockPanel DockPanel.Dock="Bottom">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="3">
-                    <Label  Height="25" Content="Tags" Background="LightSlateGray" Foreground="White" />
+                    <Label  Height="25" Content="Tags" 
+                            Background="{StaticResource HeaderLinearBrush}" 
+                            Foreground="{StaticResource TextBrush}" />
                     <Separator Height="5"/>
                     <ListView DataContext="{Binding TagView}"
                                   Name="SnippetListView"

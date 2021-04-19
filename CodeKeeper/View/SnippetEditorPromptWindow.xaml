@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
          WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
         Title="Prompt Window" Height="120" Width="600">
     
     <Grid>

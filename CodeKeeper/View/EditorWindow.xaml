@@ -6,6 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"                      
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
+        SizeChanged="Window_SizeChanged"
         WindowStartupLocation="CenterScreen"
         Icon="pack://application:,,,/Images/snippet.png"
         Title="Snippet Editor" Height="450" Width="800" >

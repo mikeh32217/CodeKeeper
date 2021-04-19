@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
+        SizeChanged="Window_SizeChanged"
         Icon="pack://application:,,,/Images/preview.png"
         WindowStartupLocation="CenterScreen"
         Title="Preview Window" Height="450" Width="800">

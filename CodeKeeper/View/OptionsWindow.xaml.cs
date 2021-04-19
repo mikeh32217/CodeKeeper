@@ -1,4 +1,5 @@
-﻿using CodeKeeper.ViewModel;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,13 @@ namespace CodeKeeper.View
 
             ViewModel = new OptionsWindowViewModel();
             DataContext = ViewModel;
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ConfigMgr.Instance.settingProvider.SetValue("OptionWindowSize", "Width", e.NewSize.Width.ToString());
+            ConfigMgr.Instance.settingProvider.SetValue("OptionWindowSize", "Height", e.NewSize.Height.ToString());
+            ConfigMgr.Instance.configMgr.SaveConfigChanges();
         }
     }
 }

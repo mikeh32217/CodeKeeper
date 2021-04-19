@@ -18,6 +18,7 @@ namespace CodeKeeper.Configuration
         public KeyValueProvider appProvider { get; set; }
         public KeySubkeyProvider settingProvider { get; set; }
         public KeyValueProvider queryProvider { get; set; }
+
         public static ConfigMgr Instance
         {
             get { return instance; }

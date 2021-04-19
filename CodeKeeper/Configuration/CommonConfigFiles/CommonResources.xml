@@ -10,5 +10,10 @@
   <ApplicationSection>
     <DefaultContent content="Enter content here" />
     <DefaultLanguage language="C++" />
+    <MainWindowSize Width="971" Height="583" />
+    <EditorWindowSize Width="846" Height="480" />
+    <TagWindowSize Width="715" Height="514" />
+    <PreviewWindowSize Width="628" Height="477" />
+    <OptionWindowSize Width="615" Height="403" />
   </ApplicationSection>
 </Configuration>

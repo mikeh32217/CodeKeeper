@@ -1,4 +1,5 @@
-﻿using CodeKeeper.View;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.View;
 using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,16 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            TagEditorWindow tew = new TagEditorWindow();
-            tew.ShowDialog();
+            TagEditorWindow ew = new TagEditorWindow();
+
+            Dictionary<string, string> sz = ConfigMgr.Instance.settingProvider.GetValues("TagWindowSize");
+            if (sz != null)
+            {
+                ew.Width = int.Parse(sz["Width"].ToLower());
+                ew.Height = int.Parse(sz["Height"].ToLower());
+            }
+
+            ew.ShowDialog();
         }
     }
 }

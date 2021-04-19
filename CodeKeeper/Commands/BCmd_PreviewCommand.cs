@@ -1,4 +1,5 @@
-﻿using CodeKeeper.Repository;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.Repository;
 using CodeKeeper.View;
 using CodeKeeper.ViewModel;
 using System;
@@ -39,6 +40,14 @@ namespace CodeKeeper.Commands
             string res = DoParse();
 
             PreviewWindow pw = new PreviewWindow(res);
+
+            Dictionary<string, string> sz = ConfigMgr.Instance.settingProvider.GetValues("PreviewWindowSize");
+            if (sz != null)
+            {
+                pw.Width = int.Parse(sz["Width"].ToLower());
+                pw.Height = int.Parse(sz["Height"].ToLower());
+            }
+
             pw.ShowDialog();
         }
 

@@ -1,4 +1,5 @@
-﻿using CodeKeeper.View;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,14 @@ namespace CodeKeeper.Commands
         public void Execute(object parameter)
         {
             EditorWindow ew = new EditorWindow();
+
+            Dictionary<string, string> sz = ConfigMgr.Instance.settingProvider.GetValues("EditorWindowSize");
+            if (sz != null)
+            {
+                ew.Width = int.Parse(sz["Width"].ToLower());
+                ew.Height = int.Parse(sz["Height"].ToLower());
+            }
+
             ew.ShowDialog();
         }
     }

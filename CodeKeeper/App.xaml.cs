@@ -16,7 +16,5 @@ namespace CodeKeeper
     {
         // Put globals here!
         public static EventAggregator g_eventAggregator = new EventAggregator();
-
-
     }
 }

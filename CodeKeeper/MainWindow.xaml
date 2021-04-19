@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"         
         xmlns:cmd="clr-namespace:CodeKeeper.Commands"
-        xmlns:local="clr-namespace:CodeKeeper"
+        xmlns:local="clr-namespace:CodeKeeper.ViewModel"
+        xmlns:mod="clr-namespace:CodeKeeper.Model"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         SizeChanged="Window_SizeChanged"
@@ -14,7 +16,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Open Folder"/>
+                <MenuItem Header="Open Folder" Command="{Binding BCmd_OpenProjectDirectoryCommand}"/>
                 <MenuItem Header="Open File" />
                 <MenuItem Header="Options" Command="{Binding BCmd_OpenOptionsCommand}" />
                 <MenuItem Header="Exit"/>
@@ -49,8 +51,22 @@
                 </Button>
             </StackPanel>
         </Border>
-        <StackPanel DockPanel.Dock="Bottom">
-
-        </StackPanel>
+        <DockPanel DockPanel.Dock="Bottom" Margin="5">
+            <TreeView x:Name="DirectoryTree" Width="150" 
+                      ItemsSource="{Binding TreeNodeCollection}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type mod:TreeNode}" ItemsSource="{Binding TreeNodeList}">
+                        <TextBlock Text="{Binding Name}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedItemChanged">
+                        <i:InvokeCommandAction Command="{Binding TreeViewSelectionChangedCommand}"
+                             CommandParameter="{Binding ElementName=DirectoryTree, Path=SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TreeView>
+            <Grid DockPanel.Dock="Right"/>
+        </DockPanel>
     </DockPanel>
 </Window>

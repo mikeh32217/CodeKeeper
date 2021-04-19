@@ -137,15 +137,19 @@
     <Compile Include="Commands\BCmd_SaveEditorCommand.cs" />
     <Compile Include="Commands\BCmd_SnippetEditorWindowGeneriCommand.cs" />
     <Compile Include="Commands\SnippetListViewSelectionChangedCommand.cs" />
+    <Compile Include="Commands\TreeViewSelectionChangedCommand.cs" />
     <Compile Include="Configuration\ConfigMgr.cs" />
     <Compile Include="Configuration\CustomEventArgs\OnvalueChangedEventArgs.cs" />
     <Compile Include="Configuration\Providers\CustomConfigurationManager.cs" />
     <Compile Include="Configuration\Providers\KeySubkeyProvider.cs" />
     <Compile Include="Configuration\Providers\KeyValueProvider.cs" />
     <Compile Include="Configuration\Providers\ProviderBase.cs" />
+    <Compile Include="Converters\HeaderToImageConverter.cs" />
+    <Compile Include="Events\DirectoryEvent.cs" />
     <Compile Include="Events\GenericEvent.cs" />
     <Compile Include="Model\Snippets.cs" />
     <Compile Include="Model\Tokens.cs" />
+    <Compile Include="Model\TreeNode.cs" />
     <Compile Include="Repository\MasterRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\SnippetsRepository.cs" />
@@ -274,6 +278,9 @@
     <Resource Include="Images\new.png" />
     <Resource Include="Images\preview.png" />
     <Resource Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\diskdrive.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.3\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.3\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />

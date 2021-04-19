@@ -15,7 +15,11 @@ namespace CodeKeeper.Commands
     {
         public EditorWindowViewModel ViewModel { get; set; }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public BCmd_PreviewCommand(EditorWindowViewModel vm)
         {

@@ -14,7 +14,12 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_NewEditorCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
+
         public EditorWindowViewModel ViewModel { get; set; }
 
         public BCmd_NewEditorCommand(EditorWindowViewModel vm)

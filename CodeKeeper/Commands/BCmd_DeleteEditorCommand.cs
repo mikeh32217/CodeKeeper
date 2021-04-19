@@ -12,7 +12,12 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_DeleteEditorCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
+
         public EditorWindowViewModel ViewModel { get; set; }
 
         public BCmd_DeleteEditorCommand(EditorWindowViewModel vm)

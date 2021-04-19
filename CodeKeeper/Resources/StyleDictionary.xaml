@@ -88,7 +88,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Width" Value="24" />
         <Setter Property="Height" Value="24" />
-        <Setter Property="Margin" Value="2 0" />
+        <Setter Property="Margin" Value="1 0 5 0" />
         <Setter Property="Opacity" Value="1.0"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -107,12 +107,12 @@
     </Style>
 
     <Style x:Key="ToolBarContainer" TargetType="{x:Type Border}">
-        <Setter Property="Padding" Value="6"/>
-        <Setter Property="Height" Value="38" />
+        <Setter Property="Padding" Value="7 0"/>
+        <Setter Property="Height" Value="42" />
         <Setter Property="Background" Value="{StaticResource HeaderLinearBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ToolbarBorderBrush}"/>
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Margin" Value="0 0 0 10" />
+        <Setter Property="Margin" Value="0 0 0 5" />
     </Style>
 
     <Style x:Key="ToolBarSeparator"
@@ -127,7 +127,7 @@
     <Style x:Key="ToolbarButton" TargetType="{x:Type Button}">
         <Setter Property="Width" Value="24"/>
         <Setter Property="Height" Value="24" />
-        <Setter Property="Margin" Value="3 0"/>
+        <Setter Property="Margin" Value="5 0"/>
         <Setter Property="Background" Value="{StaticResource ToolbatBackgroundBrush}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>

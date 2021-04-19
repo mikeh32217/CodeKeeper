@@ -27,6 +27,8 @@ namespace CodeKeeper.Repository
 
         public DataView DefaultView { get { return EntityDataTable.DefaultView; } }
 
+        public DataView WorkingView { get; set; }
+
         #endregion
 
         #region ctor
@@ -35,6 +37,8 @@ namespace CodeKeeper.Repository
         {
             // Create a table for the entity to use
             EntityDataTable = new DataTable(tablename);
+
+            WorkingView = new DataView(EntityDataTable);
 
             if (!lazyload)
                 MasterRepository.ExecuteQuery(EntityDataTable, GetQueryString());
@@ -49,12 +53,9 @@ namespace CodeKeeper.Repository
         // Uses the DefaultView
         virtual public DataView GetAllAsView(object sender = null)
         {
-// TODO Check           DataView view = GetView();
-            
             MasterRepository.ExecuteQuery(EntityDataTable, GetQueryString());
 
             return EntityDataTable.DefaultView;
- // TODO Check           return view;
         }
 
         virtual public string GetQueryString()

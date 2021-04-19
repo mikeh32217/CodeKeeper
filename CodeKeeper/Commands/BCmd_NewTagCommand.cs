@@ -1,4 +1,5 @@
 ﻿using CodeKeeper.Repository;
+using CodeKeeper.View;
 using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Windows.Input;
 
 namespace CodeKeeper.Commands
 {
-    public class BCmd_SaveEditorCommand : ICommand
+    public class BCmd_NewTagCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
@@ -17,10 +18,14 @@ namespace CodeKeeper.Commands
             remove { }
         }
 
-        public EditorWindowViewModel ViewModel { get; set; }
+        public NewTagInputWindow TopLevelWindow { get; set; }
 
-        public BCmd_SaveEditorCommand(EditorWindowViewModel vm)
+        public NewTagInputWindowViewModel ViewModel { get; set; }
+
+        public BCmd_NewTagCommand(NewTagInputWindowViewModel vm, NewTagInputWindow win)
         {
+            TopLevelWindow = win;
+
             ViewModel = vm;
         }
 
@@ -31,7 +36,11 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            MasterRepository._Snippet.UpdateSnippet(ViewModel.CurrentSnippet);
+            string tag = ViewModel.NewTagName;
+
+            ViewModel.NewTagId = MasterRepository._Token.SaveTag(tag);
+
+            TopLevelWindow.Close();
         }
     }
 }

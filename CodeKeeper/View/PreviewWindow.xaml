@@ -13,7 +13,7 @@
             <RowDefinition Height="36"/>
         </Grid.RowDefinitions>
         <ScrollViewer Margin="10 5" VerticalScrollBarVisibility="Auto">
-            <TextBlock Text="{Binding Content}"></TextBlock>
+            <TextBlock Text="{Binding Content}" TextWrapping="Wrap"></TextBlock>
         </ScrollViewer>
         <Button IsCancel="True" Content="Close" Height="26" Grid.Row="1" Margin="10 0"/>
     </Grid>

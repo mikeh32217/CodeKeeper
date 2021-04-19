@@ -11,7 +11,11 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_OpenTagEditorCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public BCmd_OpenTagEditorCommand()
         {

@@ -10,7 +10,11 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_OpenSnippetEditorCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public bool CanExecute(object parameter)
         {

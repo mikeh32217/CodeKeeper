@@ -11,7 +11,11 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_SaveTagEditorCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public TagEditorWindowViewModel ViewModel { get; set; }
 
@@ -27,7 +31,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
- // TODO          MasterRepository._Snippet.UpdateTag(ViewModel.CurrentTag);
+             MasterRepository._Token.UpdateTag(ViewModel.CurrentTag);
         }
     }
 }

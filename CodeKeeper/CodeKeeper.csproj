@@ -123,6 +123,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\BCmd_DeleteTagEditorCommand.cs" />
     <Compile Include="Commands\BCmd_DeleteEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_NewTagCommand.cs" />
     <Compile Include="Commands\BCmd_NewTagEditorCommand .cs" />
     <Compile Include="Commands\BCmd_NewEditorCommand.cs" />
     <Compile Include="Commands\BCmd_NewSnippetCommand.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="ViewModel\EditorWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NewSnippetWindowViewModel.cs" />
+    <Compile Include="ViewModel\NewTagInputWindowViewModel.cs" />
     <Compile Include="ViewModel\PreviewWindowViewModel.cs" />
     <Compile Include="ViewModel\SnippetEditorPromptWindowViewModel.cs" />
     <Compile Include="ViewModel\TagEditorWindowViewModel.cs" />
@@ -164,6 +166,9 @@
     </Compile>
     <Compile Include="View\NewSnippetInputWindow.xaml.cs">
       <DependentUpon>NewSnippetInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewTagInputWindow.xaml.cs">
+      <DependentUpon>NewTagInputWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PreviewWindow.xaml.cs">
       <DependentUpon>PreviewWindow.xaml</DependentUpon>
@@ -195,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NewSnippetInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewTagInputWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

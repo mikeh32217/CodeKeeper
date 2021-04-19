@@ -8,7 +8,7 @@
     <add key="ConnectionString" value="Data Source=G:\Application DBS\CodeKeeper\CodeKeeper_V1.db" />
   </ResourceSection>
   <ApplicationSection>
-    <DefaultContent content="Enter Snippet content here" />
+    <DefaultContent content="Enter content here" />
     <DefaultLanguage language="C++" />
   </ApplicationSection>
 </Configuration>

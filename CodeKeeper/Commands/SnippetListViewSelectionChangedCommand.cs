@@ -12,7 +12,11 @@ namespace CodeKeeper.Commands
 {
     public class SnippetListViewSelectionChangedCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public EditorWindowViewModel ViewModel { get; set; }
 

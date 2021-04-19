@@ -12,7 +12,11 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_NewSnippetCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public NewSnippetInputWindow TopLevelWindow { get; set; }
 
@@ -34,7 +38,7 @@ namespace CodeKeeper.Commands
         {
             string tag = ViewModel.NewSnippetName;
 
-            ViewModel.NewSnippetId = MasterRepository._Snippet.SaveSniipet(tag);
+            ViewModel.NewSnippetId = MasterRepository._Snippet.SaveSnippet(tag);
 
             TopLevelWindow.Close();
         }

@@ -14,7 +14,12 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_NewTagEditorCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
+
         public TagEditorWindowViewModel ViewModel { get; set; }
 
         public BCmd_NewTagEditorCommand(TagEditorWindowViewModel vm)
@@ -30,18 +35,17 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            // TODO Finish
-            //NewSnippetInputWindow win = new NewSnippetInputWindow();
-            //win.ShowDialog();
+            NewTagInputWindow win = new NewTagInputWindow();
+            win.ShowDialog();
 
-            //Int64 id = win.ViewModel.NewTagId;
-            //if (id > 0)
-            //{
-            //    DataRow row = MasterRepository._Token.GetById(id.ToString());
-            //    DataRowView selecRow = MasterRepository._Snippet.DefaultView.Cast<DataRowView>().FirstOrDefault(a => a.Row == row);
+            Int64 id = win.ViewModel.NewTagId;
+            if (id > 0)
+            {
+                DataRow row = MasterRepository._Token.GetById(id.ToString());
+                DataRowView selecRow = MasterRepository._Snippet.DefaultView.Cast<DataRowView>().FirstOrDefault(a => a.Row == row);
 
-            //    ViewModel.CurrentTag = selecRow;
-            //}
+                ViewModel.CurrentTag = selecRow;
+            }
         }
     }
 }

@@ -9,7 +9,11 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_OpenProjectDirectoryCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public string FullPath { get; set; }
 

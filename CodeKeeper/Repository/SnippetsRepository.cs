@@ -26,7 +26,7 @@ namespace CodeKeeper.Repository
             return "Id";
         }
 
-        public Int64 SaveSniipet(string tag)
+        public Int64 SaveSnippet(string tag)
         {
             Int64 id = 0;
 
@@ -120,7 +120,7 @@ namespace CodeKeeper.Repository
                 }
                 catch (Exception x)
                 {
-                    MessageBox.Show("PartRepository:Delete - " + x.Message);
+                    MessageBox.Show("SnippetRepository:Delete - " + x.Message);
                 }
             }
         }

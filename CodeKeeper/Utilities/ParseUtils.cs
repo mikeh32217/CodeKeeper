@@ -14,8 +14,6 @@ namespace CodeKeeper.Utilities
 {
     public class ParseUtils
     {
-        private static DataView TokenView = null;
-
         public static string Parse(DataRowView row, string path)
         {
             Regex rx = new Regex(@"{\{.[^\}]*\}\}");

@@ -59,7 +59,7 @@
                 <ScrollViewer DockPanel.Dock="Right" Grid.Row="1" Margin="5 0" VerticalScrollBarVisibility="Auto">
                     <TextBox Name="tb" Padding="5"
                              AcceptsReturn="True"
-                             TextWrapping="Wrap" SpellCheck.IsEnabled="True"
+                             TextWrapping="Wrap"
                              Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     </TextBox>
                 </ScrollViewer>

@@ -12,7 +12,12 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_DeleteTagEditorCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
+
         public TagEditorWindowViewModel ViewModel { get; set; }
 
         public BCmd_DeleteTagEditorCommand(TagEditorWindowViewModel vm)
@@ -33,7 +38,7 @@ namespace CodeKeeper.Commands
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    MasterRepository._Snippet.Delete(ViewModel.CurrentTag["TokenId"].ToString());
+                    MasterRepository._Token.Delete(ViewModel.CurrentTag["TokenId"].ToString());
                 }
             }
         }

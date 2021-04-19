@@ -11,7 +11,11 @@ namespace CodeKeeper.Commands
 {
     public class BCmd_SnippetEditorWindowGeneriCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public Window ParentWindow { get; set; }
         public SnippetEditorPromptWindowViewModel ViewModel { get; set; }

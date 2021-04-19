@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
-         WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/Images/snippet.png"
+        WindowStartupLocation="CenterScreen"
         Title="Enter New Snippet Name" Height="120" Width="400">
     <Grid>
         <Grid.RowDefinitions>

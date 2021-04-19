@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/Images/snippet.png"
         Title="Snippet Editor" Height="450" Width="800" >
 
     <DockPanel Margin="0 0 0 5">

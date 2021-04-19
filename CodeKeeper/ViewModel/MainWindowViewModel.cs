@@ -18,6 +18,7 @@ namespace CodeKeeper.ViewModel
         public BCmd_OpenFileCommand BCmd_OpenFileCommand { get; set; }
         public BCmd_OpenSnippetEditorCommand BCmd_OpenSnippetEditorCommand { get; set; }
         public BCmd_OpenTagEditorCommand BCmd_OpenTagEditorCommand { get; set; }
+        public BCmd_OpenOptionsCommand BCmd_OpenOptionsCommand { get; set; }
 
         public DataView TokenViewView { get; set; }
 
@@ -38,6 +39,7 @@ namespace CodeKeeper.ViewModel
             BCmd_OpenFileCommand = new BCmd_OpenFileCommand();        
             BCmd_OpenSnippetEditorCommand = new BCmd_OpenSnippetEditorCommand();
             BCmd_OpenTagEditorCommand = new BCmd_OpenTagEditorCommand();
+            BCmd_OpenOptionsCommand = new BCmd_OpenOptionsCommand();
         }
 
         private void MessageCallback(GenericMessage msg)

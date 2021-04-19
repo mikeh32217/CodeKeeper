@@ -15,7 +15,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="Open Folder"/>
                 <MenuItem Header="Open File" />
-                <MenuItem Header="Options" />
+                <MenuItem Header="Options" Command="{Binding BCmd_OpenOptionsCommand}" />
                 <MenuItem Header="Exit"/>
             </MenuItem>
             <MenuItem Header="Editor">
@@ -33,7 +33,8 @@
                 <Button Style="{StaticResource BorderlessButton}">
                     <Image Source="Images/folder.png"/>
                 </Button>
-                <Button Style="{StaticResource BorderlessButton}">
+                <Button Style="{StaticResource BorderlessButton}"
+                        Command="{Binding BCmd_OpenOptionsCommand}">
                     <Image Source="Images/options.png"/>
                 </Button>
                 <Separator/>

@@ -31,13 +31,8 @@ namespace CodeKeeper.ViewModel
         public BCmd_OpenOptionsCommand BCmd_OpenOptionsCommand { get; set; }
         public TreeViewSelectionChangedCommand TreeViewSelectionChangedCommand { get; set; }
 
-        // TEMP ?? Why is this here?
-        public DataView TokenViewView { get; set; }
-
         public MainWindowViewModel()
         {
-            // TODO Other stuff here
-
             // NOTE Version to be changed as needed
             Version = "CodeKeeper V 1.0";
 

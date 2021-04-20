@@ -20,9 +20,13 @@ namespace CodeKeeper.ViewModel
     {
         public string Version { get; set; }
 
-        // TEMP
-        public ObservableCollection<TreeNode> TreeNodeCollection { get; set; }
+        // For the directory TreeView
+        public ObservableCollection<TreeNode> TreeNodeCollection { get; set; } = new ObservableCollection<TreeNode>();
         public TreeNode CurrentNode { get; set; }
+
+        // For the File ListView
+        public ObservableCollection<FileData> FileCollection { get; set; } = new ObservableCollection<FileData>();
+        public FileData CurrentFile { get; set; }
 
         public BCmd_OpenProjectDirectoryCommand BCmd_OpenProjectDirectoryCommand { get; set; }
         public BCmd_OpenFileCommand BCmd_OpenFileCommand { get; set; }
@@ -49,25 +53,49 @@ namespace CodeKeeper.ViewModel
 
         private void MessageCallback(DirectoryMessage node)
         {
-            TraverseDirectory(node);
+            if (node.NodeMsg.Type == DF_TYPE.Directory)
+            {
+                TreeNodeCollection.Clear();
+
+                TreeNode root = new TreeNode(node.NodeMsg.Name);
+                TreeNodeCollection.Add(root);
+
+                DirectoryInfo di = new DirectoryInfo(node.NodeMsg.Name);
+                TraverseDirectory(di, root);
+            }
+            else
+            {
+                FileCollection.Clear();
+
+                string[] info = Directory.GetFiles(node.NodeMsg.FullPath);
+                foreach (string s in info)
+                    FileCollection.Add(new FileData(s));
+            }
         }
 
         // TEMP Data for testing
-        private void TraverseDirectory(DirectoryMessage node)
+        private void TraverseDirectory(DirectoryInfo root, TreeNode node)
         {
             // TODO Create a ListView on the right side of the main window area
             //  that shall contain a list of all files in the directories an
             //  sudirectories with a filter and checkboxes to refine the list
             //  of files to process.
+            DirectoryInfo[] subDirs = null;
 
-            TreeNode root = new TreeNode("Root");
-            TreeNode node1 = new TreeNode("Root1");
-            node1.TreeNodeList.Add(new TreeNode("Sub1"));
-            node1.TreeNodeList.Add(new TreeNode("Sub2"));
-            root.TreeNodeList.Add(node1);
-            root.TreeNodeList.Add(new TreeNode("Adrienne", DF_TYPE.File));
+            TreeNode dir = new TreeNode(root.Name, root.FullName);
+            node.TreeNodeList.Add(dir);
 
-            TreeNodeCollection = root.TreeNodeList;
+            subDirs = root.GetDirectories();
+
+            foreach (System.IO.DirectoryInfo dirInfo in subDirs)
+            {
+                TraverseDirectory(dirInfo, dir);
+            }
+        }
+
+        private void  GetFileInfo(TreeNode node)
+        {
+
         }
     }
 }

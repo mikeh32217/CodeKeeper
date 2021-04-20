@@ -51,8 +51,13 @@
                 </Button>
             </StackPanel>
         </Border>
-        <DockPanel DockPanel.Dock="Bottom" Margin="5">
-            <TreeView x:Name="DirectoryTree" Width="150" 
+        <Grid DockPanel.Dock="Bottom" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TreeView x:Name="DirectoryTree"
+                      Grid.Column="0"
                       ItemsSource="{Binding TreeNodeCollection}">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type mod:TreeNode}" ItemsSource="{Binding TreeNodeList}">
@@ -66,7 +71,26 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </TreeView>
-            <Grid DockPanel.Dock="Right"/>
-        </DockPanel>
+            <ListView Grid.Column="1" DataContext="{Binding FileCollection}"
+                              Name="FileListView"
+                              SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
+                                Path=DataContext.CurrentFile}"
+                                ItemsSource="{Binding}">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
+                        <GridView.Columns>
+                            <GridViewColumn Width="30">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"  />
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </DockPanel>
 </Window>

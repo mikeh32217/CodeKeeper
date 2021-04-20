@@ -19,7 +19,9 @@ namespace CodeKeeper.Commands
         }
 
         void ICommand.Execute(object parameter)
-        {DirectoryMessage msg = new DirectoryMessage((TreeNode)parameter);
+        {
+            DirectoryMessage msg = new DirectoryMessage((TreeNode)parameter);
+            msg.NodeMsg.Type = TreeNode.DF_TYPE.File;
             App.g_eventAggregator.GetEvent<DirectoryEvent>().Publish(msg);
         }
     }

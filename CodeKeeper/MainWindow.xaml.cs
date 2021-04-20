@@ -29,7 +29,6 @@ namespace CodeKeeper
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            // TODO Bind to properties in the ViewModel
             ConfigMgr.Instance.settingProvider.SetValue("MainWindowSize", "Width", e.NewSize.Width.ToString());
             ConfigMgr.Instance.settingProvider.SetValue("MainWindowSize", "Height", e.NewSize.Height.ToString());
             ConfigMgr.Instance.configMgr.SaveConfigChanges();

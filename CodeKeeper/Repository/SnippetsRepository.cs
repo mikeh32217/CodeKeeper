@@ -1,4 +1,5 @@
 ﻿using CodeKeeper.Configuration;
+using CodeKeeper.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,6 +25,16 @@ namespace CodeKeeper.Repository
         public override string GetByIdString()
         {
             return "Id";
+        }
+
+        public string GetSnippetByTag(string tag)
+        {
+            WorkingView.RowFilter = "Tag = '" + tag + "'";
+
+            if (WorkingView.Count > 0)
+                return WorkingView[0].Row["Content"].ToString();
+
+            return string.Empty;
         }
 
         public Int64 SaveSnippet(string tag)

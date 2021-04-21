@@ -27,8 +27,8 @@ namespace CodeKeeper.Repository
             ConnectionString = ConfigMgr.Instance.ConnectionStringLive;
 #endif
 
-            _Snippet = new SnippetsRepository("Snippets", true);
-            _Token = new TokensRepository("Tokens", true);
+            _Snippet = new SnippetsRepository("Snippets", false);
+            _Token = new TokensRepository("Tokens", false);
         }
 
         public static void LoadTable(RepositoryBase tab)

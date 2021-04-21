@@ -28,7 +28,7 @@ namespace CodeKeeper.Repository
         {
             WorkingView.RowFilter = "Tag = '" + tag + "'";
 
-            if (EntityDataTable.DefaultView.Count > 0)
+            if (WorkingView.Count > 0)
                 return WorkingView[0].Row["Content"].ToString();
 
             return string.Empty;

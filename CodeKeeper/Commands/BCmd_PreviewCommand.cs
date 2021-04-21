@@ -56,7 +56,8 @@ namespace CodeKeeper.Commands
             // TEST temp testing Parse utility
             DataRowView drv = ViewModel.CurrentSnippet;
 
-            string str = Utilities.ParseUtils.Parse(drv, @"K:\Projects - Visual Studio 2017\CodeKeeper\CodeKeeper\ViewModel\EditorWindowViewModel.cs");
+            string content = drv["Content"].ToString();
+            string str = Utilities.ParseUtils.ParseSnippet(content);
 
             return str;
         }

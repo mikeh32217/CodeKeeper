@@ -7,12 +7,12 @@
         xmlns:cmd="clr-namespace:CodeKeeper.Commands"
         xmlns:local="clr-namespace:CodeKeeper.ViewModel"
         xmlns:mod="clr-namespace:CodeKeeper.Model"
+        xmlns:behaviors="clr-namespace:CodeKeeper.Behaviours"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         SizeChanged="Window_SizeChanged"
         Title="{Binding Version}" Height="450" Width="800">
-    
-    
+
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -26,6 +26,7 @@
                 <MenuItem Header="Open Tag Editor" Command="{Binding BCmd_OpenTagEditorCommand}" />
                 <MenuItem Header="Save"/>
             </MenuItem>
+            <MenuItem Header="Process" Command="{Binding BCmd_ProcessCommand}" />
         </Menu>
         <Border Style="{StaticResource ToolBarContainer}" DockPanel.Dock="Top">
             <StackPanel x:Name="TagEditorToolBar" Orientation="Horizontal">
@@ -33,7 +34,8 @@
                         Command="{Binding BCmd_OpenFileCommand}">
                     <Image Source="Images/document.png"/>
                 </Button>
-                <Button Style="{StaticResource BorderlessButton}">
+                <Button Style="{StaticResource BorderlessButton}"
+                         Command="{Binding BCmd_OpenProjectDirectoryCommand}">
                     <Image Source="Images/folder.png"/>
                 </Button>
                 <Button Style="{StaticResource BorderlessButton}"
@@ -49,11 +51,15 @@
                     Command="{Binding BCmd_OpenTagEditorCommand}">
                     <Image Source="Images/tag.png"/>
                 </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                    Command="{Binding BCmd_ProcessCommand}">
+                    <Image Source="Images/run.png"/>
+                </Button>
             </StackPanel>
         </Border>
         <Grid DockPanel.Dock="Bottom" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="175"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TreeView x:Name="DirectoryTree"
@@ -75,6 +81,7 @@
                               Name="FileListView"
                               SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
                                 Path=DataContext.CurrentFile}"
+                                behaviors:GridViewColumnResize.Enabled="True"
                                 ItemsSource="{Binding}">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
@@ -86,7 +93,13 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"  />
+                            <GridViewColumn behaviors:GridViewColumnResize.Width="*">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>

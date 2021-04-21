@@ -1,4 +1,5 @@
-﻿using CodeKeeper.Repository;
+﻿using CodeKeeper.Model;
+using CodeKeeper.Repository;
 using CodeKeeper.View;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,20 @@ namespace CodeKeeper.Utilities
 {
     public class ParseUtils
     {
-        public static string Parse(DataRowView row, string path)
+        private static Stack<string> TrackingStack = new Stack<string>();
+
+        public static string ParseSnippet(string content, string path = "")
+        {
+            TrackingStack.Clear();
+
+            return Parse(content, path);
+        }
+
+        private static string Parse(string content, string path = "")
         {
             Regex rx = new Regex(@"{\{.[^\}]*\}\}");
             StringBuilder bld = new StringBuilder();
 
-            string content = row["Content"].ToString();
             string replStr = string.Empty;
 
             int cursor = 0;
@@ -43,43 +52,61 @@ namespace CodeKeeper.Utilities
         private static string GetReplacement(Match match, string path)
         {
             string rstr = string.Empty;
-            string tmp = string.Empty;
             string tag = match.Value.Substring(2, match.Length - 4);
 
-            tmp = MasterRepository._Token.GetTokenByTag(tag);
-            // Set it to the value returned, if match found below will
-            //  be over writen.
-
-            rstr = tmp;
-
-            if (rstr == string.Empty)
+            if (tag.StartsWith("!"))
             {
-                MessageBox.Show("Unknown Tag encountered: " + tag);
+                string res = string.Empty;
+                string snip = MasterRepository._Snippet.GetSnippetByTag(tag.Substring(1));
+                if (snip != null && snip != string.Empty)
+                {
+                    if (TrackingStack.Contains(tag))
+                    {
+                        MessageBox.Show("Encountered circular reference: <" + tag + ">");
+                        return string.Empty;
+                    }
+                    else
+                    {
+                        TrackingStack.Push(tag);
+                        rstr = Parse(snip);
+                    }
+                }
             }
             else
             {
-                if (tag == "date")
-                {
-                    int index = tag.IndexOf(':');
-                    string format = tmp.Substring(index + 1);
-                    rstr = DateTime.Now.ToString(format);
-                }
-                else if (tag == "filename")
-                {
-                    if (path == string.Empty)
-                        rstr = "filename.ext";
-                    else
-                        rstr = Path.GetFileName(path);
-                }
-                else if (tag == "prompt")
-                {
-                    SnippetEditorPromptWindow win = new SnippetEditorPromptWindow(rstr);
-                    win.ShowDialog();
+                rstr = MasterRepository._Token.GetTokenByTag(tag);
+                // Set it to the value returned, if match found below will
+                //  be over writen.
 
-                    if (win.DialogResult == true)
-                        rstr = win.ViewModel.PromptTextBoxText;
-                    else
-                        rstr = string.Empty;
+                if (rstr == string.Empty)
+                {
+                    MessageBox.Show("Unknown Tag encountered: <" + tag + ">");
+                }
+                else
+                {
+                    if (tag == "date")
+                    {
+                        int index = tag.IndexOf(':');
+                        string format = rstr.Substring(index + 1);
+                        rstr = DateTime.Now.ToString(format);
+                    }
+                    else if (tag == "filename")
+                    {
+                        if (path == null || path == string.Empty)
+                            rstr = "filename.ext";
+                        else
+                            rstr = Path.GetFileName(path);
+                    }
+                    else if (tag == "prompt")
+                    {
+                        SnippetEditorPromptWindow win = new SnippetEditorPromptWindow(rstr);
+                        win.ShowDialog();
+
+                        if (win.DialogResult == true)
+                            rstr = win.ViewModel.PromptTextBoxText;
+                        else
+                            rstr = string.Empty;
+                    }
                 }
             }
 

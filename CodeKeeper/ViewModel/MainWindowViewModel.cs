@@ -33,6 +33,8 @@ namespace CodeKeeper.ViewModel
         public BCmd_OpenSnippetEditorCommand BCmd_OpenSnippetEditorCommand { get; set; }
         public BCmd_OpenTagEditorCommand BCmd_OpenTagEditorCommand { get; set; }
         public BCmd_OpenOptionsCommand BCmd_OpenOptionsCommand { get; set; }
+        public BCmd_ProcessCommand BCmd_ProcessCommand { get; set; }
+
         public TreeViewSelectionChangedCommand TreeViewSelectionChangedCommand { get; set; }
 
         public MainWindowViewModel()
@@ -41,17 +43,19 @@ namespace CodeKeeper.ViewModel
             Version = "CodeKeeper V 1.0";
 
             // TreeView SelectionChangeed notification
-            App.g_eventAggregator.GetEvent<DirectoryEvent>().Subscribe(MessageCallback);
+            App.g_eventAggregator.GetEvent<DirectoryEvent>().Subscribe(DirectoryMessageCallback);
 
             BCmd_OpenProjectDirectoryCommand = new BCmd_OpenProjectDirectoryCommand();
             BCmd_OpenFileCommand = new BCmd_OpenFileCommand();
             BCmd_OpenSnippetEditorCommand = new BCmd_OpenSnippetEditorCommand();
             BCmd_OpenTagEditorCommand = new BCmd_OpenTagEditorCommand();
             BCmd_OpenOptionsCommand = new BCmd_OpenOptionsCommand();
+            BCmd_ProcessCommand = new BCmd_ProcessCommand(this);
+
             TreeViewSelectionChangedCommand = new TreeViewSelectionChangedCommand();
         }
 
-        private void MessageCallback(DirectoryMessage node)
+        private void DirectoryMessageCallback(DirectoryMessage node)
         {
             if (node.NodeMsg.Type == DF_TYPE.Directory)
             {
@@ -76,10 +80,6 @@ namespace CodeKeeper.ViewModel
         // TEMP Data for testing
         private void TraverseDirectory(DirectoryInfo root, TreeNode node)
         {
-            // TODO Create a ListView on the right side of the main window area
-            //  that shall contain a list of all files in the directories an
-            //  sudirectories with a filter and checkboxes to refine the list
-            //  of files to process.
             DirectoryInfo[] subDirs = null;
 
             TreeNode dir = new TreeNode(root.Name, root.FullName);
@@ -91,11 +91,6 @@ namespace CodeKeeper.ViewModel
             {
                 TraverseDirectory(dirInfo, dir);
             }
-        }
-
-        private void  GetFileInfo(TreeNode node)
-        {
-
         }
     }
 }

@@ -30,7 +30,12 @@ namespace CodeKeeper.Commands
 
         void ICommand.Execute(object parameter)
         {
-            // TODO Display Process window
+            string path = @"K:\Projects - Visual Studio 2017\CodeKeeper\docs\test.txt";
+            string opath = path + ".tmp";
+            Utilities.DocumentUtils.ParseFile(path);
+            Utilities.DocumentUtils.InsertTextInFile(opath, 0, "This is some really neat shit!\n");
+            Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "!ahead");
+            Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "filename");
         }
     }
 }

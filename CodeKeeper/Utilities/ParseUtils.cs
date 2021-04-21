@@ -51,8 +51,14 @@ namespace CodeKeeper.Utilities
 
         private static string GetReplacement(Match match, string path)
         {
-            string rstr = string.Empty;
             string tag = match.Value.Substring(2, match.Length - 4);
+
+            return GetReplacement(tag, path);
+        }
+
+        public static string GetReplacement(string tag, string path = "")
+        { 
+            string rstr = string.Empty;
 
             if (tag.StartsWith("!"))
             {

@@ -1,4 +1,5 @@
-﻿using CodeKeeper.Model;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.Model;
 using CodeKeeper.Repository;
 using CodeKeeper.View;
 using System;
@@ -99,7 +100,15 @@ namespace CodeKeeper.Utilities
                     else if (tag == "filename")
                     {
                         if (path == null || path == string.Empty)
-                            rstr = "filename.ext";
+                        {
+                           rstr = MasterRepository._Token.GetTokenByTag(tag);
+                            if (rstr == string.Empty)
+                            {
+                                rstr = ConfigMgr.Instance.settingProvider.GetSingleValue("DefaultFilename", "name");
+                                if (rstr == null || rstr == string.Empty)
+                                    rstr = "filename.ext";
+                            }
+                        }
                         else
                             rstr = Path.GetFileName(path);
                     }

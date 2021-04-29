@@ -11,6 +11,8 @@ namespace CodeKeeper.Model
         public int TokenId { get; set; }
         public string Tag { get; set; }
         public string Content { get; set; }
+        public string Description { get; set; }
+        public bool CanDelete { get; set; }
 
         public Tokens() { }
     }

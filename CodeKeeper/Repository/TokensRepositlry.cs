@@ -1,4 +1,5 @@
 ﻿using CodeKeeper.Configuration;
+using CodeKeeper.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -34,14 +35,25 @@ namespace CodeKeeper.Repository
             return string.Empty;
         }
 
+        // TODO Do I need this?
+        public DataRowView GetTokenObjectByTag(string tag)
+        {
+            WorkingView.RowFilter = "Tag = '" + tag + "'";
+
+            if (WorkingView.Count > 0)
+                return WorkingView[0];
+
+            return null;
+        }
+
         public Int64 SaveTag(string tag)
         {
             Int64 id = 0;
 
             string defcon = ConfigMgr.Instance.settingProvider.GetSingleValue("DefaultContent", "content");
 
-            string sql = "INSERT INTO " + EntityDataTable.TableName + " (Tag, Content) VALUES" +
-                     " ('" + tag + "', '" + defcon + "')";
+            string sql = "INSERT INTO " + EntityDataTable.TableName + " (Tag, Content, Description) VALUES" +
+                     " ('" + tag + "', '" + defcon + "', 'None')";
 
             try
             {
@@ -54,6 +66,7 @@ namespace CodeKeeper.Repository
                     row["TokenId"] = id;
                     row["Tag"] = tag;
                     row["Content"] = defcon;
+                    row["Description"] = "None";
 
                     EntityDataTable.Rows.Add(row);
                     EntityDataTable.AcceptChanges();
@@ -86,9 +99,12 @@ namespace CodeKeeper.Repository
             try
             {
                 string content = Utilities.NormalizeText.Normalize(drv["Content"].ToString());
+                string desc = Utilities.NormalizeText.Normalize(drv["Description"].ToString());
+
                 string sql = "UPDATE " + EntityDataTable.TableName + " SET " +
                     "Tag='" + drv["Tag"] + "', " +
-                    "Content='" + content + "'" +
+                    "Content='" + content + "', " +
+                    "Description='" + desc + "' " +
                     " WHERE TokenId=" + drv["TokenId"].ToString();
 
                 MasterRepository.ExecuteNonQuery(EntityDataTable, sql);

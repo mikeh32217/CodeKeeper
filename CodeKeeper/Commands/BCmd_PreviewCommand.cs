@@ -53,7 +53,6 @@ namespace CodeKeeper.Commands
 
         private string DoParse()
         {
-            // TEST temp testing Parse utility
             DataRowView drv = ViewModel.CurrentSnippet;
 
             string content = drv["Content"].ToString();

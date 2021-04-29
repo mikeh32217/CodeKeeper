@@ -148,7 +148,7 @@
     <Compile Include="Converters\HeaderToImageConverter.cs" />
     <Compile Include="Events\DirectoryEvent.cs" />
     <Compile Include="Events\GenericEvent.cs" />
-    <Compile Include="GridViewColumnResizeBehavior.cs" />
+    <Compile Include="Behaviors\GridViewColumnResizeBehavior.cs" />
     <Compile Include="Model\FileData.cs" />
     <Compile Include="Model\Snippets.cs" />
     <Compile Include="Model\Tokens.cs" />

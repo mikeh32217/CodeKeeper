@@ -34,11 +34,18 @@ namespace CodeKeeper.Commands
         {
             if (ViewModel.CurrentTag != null)
             {
-                if (MessageBox.Show("You are about to delete a Tag, continue?", "Continue?",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (!bool.Parse(ViewModel.CurrentTag["CanDelete"].ToString()))
+                    MessageBox.Show("You cannot delete this Tag!", "No can do",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Hand);
+                else
                 {
-                    MasterRepository._Token.Delete(ViewModel.CurrentTag["TokenId"].ToString());
+                    if (MessageBox.Show("You are about to delete a Tag, continue?", "Continue?",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        MasterRepository._Token.Delete(ViewModel.CurrentTag["TokenId"].ToString());
+                    }
                 }
             }
         }

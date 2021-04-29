@@ -22,6 +22,8 @@ namespace CodeKeeper.Keyword
         {
             string rstr = string.Empty;
 
+            // Simple lookup, the list won't be that long so this won't impact
+            //  performance significantly.
             foreach(iKeyword key in KeywordList)
             {
                 if (key.Keyword.ToUpper() == tag.ToUpper())

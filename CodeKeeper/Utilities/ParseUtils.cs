@@ -57,9 +57,13 @@ namespace CodeKeeper.Utilities
         { 
             string rstr = string.Empty;
 
+            // If the tag begins with an '!' then it is a snippet within a snippt
+            //  but by using a stack we make sur there are no circular references.
+            // TODO The user is notified multiple times where there are mutiple tags.
             if (tag.StartsWith("!"))
             {
                 string res = string.Empty;
+
                 string snip = MasterRepository._Snippet.GetSnippetByTag(tag.Substring(1));
                 if (snip != null && snip != string.Empty)
                 {
@@ -81,7 +85,7 @@ namespace CodeKeeper.Utilities
                 rstr = KeywordManager.ParseKeywords(tag, path);
                 if (rstr == string.Empty)
                 {
-                    // Then if not found check the DB.
+                    // Then if not found check the DB for User replacement strings
                     rstr = MasterRepository._Token.GetTokenByTag(tag);
                     if (rstr == string.Empty)
                         MessageBox.Show("Unknown Tag encountered: <" + tag + ">");

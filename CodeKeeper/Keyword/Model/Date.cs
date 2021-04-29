@@ -13,10 +13,11 @@ namespace CodeKeeper.Keyword.Model
 
         public string Execute(object param)
         {
-            string format = string.Empty;
+            string tag = string.Empty;
 
-            string tag = MasterRepository._Token.GetTokenByTag(Keyword);
-            if (tag != null)
+            // Format examples https://www.csharp-examples.net/string-format-datetime/
+            string format = MasterRepository._Token.GetTokenByTag(Keyword);
+            if (format != null)
                 tag = DateTime.Now.ToString(format);
 
             return tag;

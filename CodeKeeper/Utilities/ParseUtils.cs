@@ -1,15 +1,11 @@
-﻿using CodeKeeper.Configuration;
-using CodeKeeper.Model;
+﻿using CodeKeeper.Keyword;
+using CodeKeeper.Keyword.Model;
 using CodeKeeper.Repository;
 using CodeKeeper.View;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CodeKeeper.Utilities
@@ -81,47 +77,14 @@ namespace CodeKeeper.Utilities
             }
             else
             {
-                rstr = MasterRepository._Token.GetTokenByTag(tag);
-                // Set it to the value returned, if match found below will
-                //  be over writen.
-
+                // Go throught the keyword list first
+                rstr = KeywordManager.ParseKeywords(tag, path);
                 if (rstr == string.Empty)
                 {
-                    MessageBox.Show("Unknown Tag encountered: <" + tag + ">");
-                }
-                else
-                {
-                    if (tag == "date")
-                    {
-                        int index = tag.IndexOf(':');
-                        string format = rstr.Substring(index + 1);
-                        rstr = DateTime.Now.ToString(format);
-                    }
-                    else if (tag == "filename")
-                    {
-                        if (path == null || path == string.Empty)
-                        {
-                           rstr = MasterRepository._Token.GetTokenByTag(tag);
-                            if (rstr == string.Empty)
-                            {
-                                rstr = ConfigMgr.Instance.settingProvider.GetSingleValue("DefaultFilename", "name");
-                                if (rstr == null || rstr == string.Empty)
-                                    rstr = "filename.ext";
-                            }
-                        }
-                        else
-                            rstr = Path.GetFileName(path);
-                    }
-                    else if (tag == "prompt")
-                    {
-                        SnippetEditorPromptWindow win = new SnippetEditorPromptWindow(rstr);
-                        win.ShowDialog();
-
-                        if (win.DialogResult == true)
-                            rstr = win.ViewModel.PromptTextBoxText;
-                        else
-                            rstr = string.Empty;
-                    }
+                    // Then if not found check the DB.
+                    rstr = MasterRepository._Token.GetTokenByTag(tag);
+                    if (rstr == string.Empty)
+                        MessageBox.Show("Unknown Tag encountered: <" + tag + ">");
                 }
             }
 

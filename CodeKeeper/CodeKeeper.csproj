@@ -149,7 +149,12 @@
     <Compile Include="Events\DirectoryEvent.cs" />
     <Compile Include="Events\GenericEvent.cs" />
     <Compile Include="Behaviors\GridViewColumnResizeBehavior.cs" />
+    <Compile Include="Keyword\KeywordManager.cs" />
+    <Compile Include="Keyword\Model\Date.cs" />
+    <Compile Include="Keyword\Model\Prompt.cs" />
     <Compile Include="Model\FileData.cs" />
+    <Compile Include="Keyword\Model\Filename.cs" />
+    <Compile Include="Keyword\Model\iKeyword.cs" />
     <Compile Include="Model\Snippets.cs" />
     <Compile Include="Model\Tokens.cs" />
     <Compile Include="Model\TreeNode.cs" />

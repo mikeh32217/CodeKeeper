@@ -15,7 +15,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding NewTagName}" Margin="20 5" Height="24"/>
+        <TextBox Text="{Binding NewTagName}" 
+                 Focusable="True"
+                 Margin="20 5" Height="24"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10" 
                     HorizontalAlignment="Center">
             <Button Margin="10 0" Command="{Binding BCmd_NewTagCommand}">Accept</Button>

@@ -238,6 +238,10 @@ namespace CodeKeeper.Behaviours
             {
                 if (Enabled)
                 {
+                    // NOTE I added this because of exception where ActualWidth was < 0.
+                    if (_element.ActualWidth <= 0)
+                        return;
+
                     double totalWidth = _element.ActualWidth;
                     var gv = _element.View as GridView;
                     if (gv != null)

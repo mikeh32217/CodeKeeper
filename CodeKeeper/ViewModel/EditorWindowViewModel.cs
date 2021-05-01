@@ -16,6 +16,9 @@ namespace CodeKeeper.ViewModel
 
         public DataView SnippetView { get; set; }
 
+        // TODO Impliment this!
+        public bool Isirty { get; set; }
+
         private DataRowView _currentSnippet;
 
         public DataRowView CurrentSnippet

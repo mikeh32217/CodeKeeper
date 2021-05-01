@@ -1,4 +1,5 @@
-﻿using CodeKeeper.Events;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.Events;
 using CodeKeeper.Model;
 using Microsoft.Win32;
 using Ookii.Dialogs.Wpf;
@@ -35,6 +36,10 @@ namespace CodeKeeper.Commands
             if (vfbd.ShowDialog() == true)
             {
                 FullPath = vfbd.SelectedPath;
+
+                ConfigMgr.Instance.settingProvider.SetValue("DefaultDirectory", "path", FullPath);
+                ConfigMgr.Instance.configMgr.SaveConfigChanges();
+
                 DirectoryMessage msg = new DirectoryMessage(new TreeNode(FullPath, DF_TYPE.Directory));
                 App.g_eventAggregator.GetEvent<DirectoryEvent>().Publish(msg);
             }

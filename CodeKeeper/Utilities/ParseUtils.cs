@@ -78,6 +78,13 @@ namespace CodeKeeper.Utilities
                         rstr = Parse(snip);
                     }
                 }
+                else
+                {
+                    MessageBox.Show("No such Snippet: <" + tag.Substring(1) + ">", 
+                        "Input Error", 
+                        MessageBoxButton.OK, 
+                        MessageBoxImage.Error);
+                }
             }
             else
             {
@@ -88,7 +95,10 @@ namespace CodeKeeper.Utilities
                     // Then if not found check the DB for User replacement strings
                     rstr = MasterRepository._Token.GetTokenByTag(tag);
                     if (rstr == string.Empty)
-                        MessageBox.Show("Unknown Tag encountered: <" + tag + ">");
+                        MessageBox.Show("Unknown Tag encountered: <" + tag + ">",
+                            "Input Error",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
                 }
             }
 

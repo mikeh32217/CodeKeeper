@@ -31,10 +31,12 @@ namespace CodeKeeper.Commands
 
         void ICommand.Execute(object parameter)
         {
-            // TODO Finish
-            PreviewOutputWindow win = new PreviewOutputWindow();
-            win.ShowDialog();
-
+            if (ViewModel.CurrentFile != null)
+            {
+                // TODO Finish
+                PreviewOutputWindow win = new PreviewOutputWindow(ViewModel.CurrentFile);
+                win.ShowDialog();
+            }
             // TEST - Used when developing parse and insert methods.
             //string path = @"K:\Projects - Visual Studio 2017\CodeKeeper\docs\test.txt";
             //string opath = path + ".tmp";

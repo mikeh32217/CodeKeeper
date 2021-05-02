@@ -101,5 +101,54 @@ namespace CodeKeeper.Utilities
 
             return true;
         }
+
+        public static string PreviewFile(string path)
+        {
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("No such file: <" + path + ">");
+                return string.Empty;
+            }
+
+            Regex rx = new Regex(@"{\{.[^\}]*\}\}");
+            MatchCollection matches = null;
+            var text = new StringBuilder();
+            string res = string.Empty;
+
+            foreach (string s in File.ReadAllLines(path))
+            {
+                matches = rx.Matches(s);
+                if (matches.Count > 0)
+                {
+                    res = Utilities.ParseUtils.ParseSnippet(s);
+                    text.Append(res + "\n");
+                }
+                else
+                    text.AppendLine(s);
+            }
+
+            return text.ToString();
+        }
+
+        public static string LoadFile(string path)
+        {
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("The file doesn't exit", 
+                    "Not able to load file", 
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return string.Empty;
+            }
+
+            var text = new StringBuilder();
+            foreach (string s in File.ReadAllLines(path))
+            {
+                text.Append(s);
+                text.Append("\n");
+            }
+
+                return text.ToString();
+        }
     }
 }

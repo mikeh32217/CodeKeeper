@@ -6,8 +6,35 @@
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
         Title="PreviewOutputWindow" Height="450" Width="800">
-    
-    <DockPanel>
 
-    </DockPanel>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Button Name="clickity" 
+                Content="Clickity" Click="Button_Click"/>
+            <ListView DockPanel.Dock="Left" DataContext="{Binding TagInfoList}"
+                              Name="SnippetListView"
+                              Width="140"
+                              SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
+                                Path=DataContext.CurrentSnippet}"
+                                ItemsSource="{Binding}">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
+                        <GridView.Columns>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=LinkTargetText}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <TextBox Name="textity" Padding="5" Grid.Column="2"
+                 TextWrapping="Wrap"
+                 FontSize="14" Text="{Binding RawContent}"/>
+    </Grid>
 </Window>

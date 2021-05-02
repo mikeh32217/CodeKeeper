@@ -1,5 +1,6 @@
 ﻿using CodeKeeper.Keyword;
 using CodeKeeper.Keyword.Model;
+using CodeKeeper.Model;
 using CodeKeeper.Repository;
 using CodeKeeper.View;
 using System;
@@ -103,6 +104,21 @@ namespace CodeKeeper.Utilities
             }
 
             return rstr;
+        }
+
+        public static List<TagInfo> GetTagInfo(string text)
+        {
+            Regex rx = new Regex(@"{\{.[^\}]*\}\}");
+            MatchCollection matches = rx.Matches(text);
+
+            List<TagInfo> tagInfoList = new List<TagInfo>();
+
+            foreach(Match match in matches)
+            {
+                tagInfoList.Add(new TagInfo(match.Index, match.Length, match.Value));
+            }
+
+            return tagInfoList;
         }
     }
 }

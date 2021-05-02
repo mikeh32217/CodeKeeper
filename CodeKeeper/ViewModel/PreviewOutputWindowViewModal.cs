@@ -1,4 +1,5 @@
-﻿using CodeKeeper.View;
+﻿using CodeKeeper.Model;
+using CodeKeeper.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,19 @@ namespace CodeKeeper.ViewModel
     {
         public PreviewOutputWindow ParentWindow { get; set; }
 
-        public string LongText { get; set; }
+        public List<TagInfo> TagInfoList { get; set; }
+
+        public string RawContent { get; set; }
 
         public PreviewOutputWindowViewModal(PreviewOutputWindow win)
         {
             ParentWindow = win;
 
-            LongText = "This is a test with some really long text that will wrap around so I can see what it will do.";
+            RawContent = Utilities.DocumentUtils.LoadFile(win.FileInfo.Name);
+            TagInfoList = Utilities.ParseUtils.GetTagInfo(RawContent);
+
+            // NOTE This loads the parsed file into the TextBox
+            //  LongText = Utilities.DocumentUtils.PreviewFile(win.FileInfo.Name);
         }
     }
 }

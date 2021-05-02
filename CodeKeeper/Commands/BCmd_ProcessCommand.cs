@@ -1,4 +1,5 @@
-﻿using CodeKeeper.ViewModel;
+﻿using CodeKeeper.View;
+using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +31,17 @@ namespace CodeKeeper.Commands
 
         void ICommand.Execute(object parameter)
         {
-            string path = @"K:\Projects - Visual Studio 2017\CodeKeeper\docs\test.txt";
-            string opath = path + ".tmp";
-            Utilities.DocumentUtils.ParseFile(path);
-            Utilities.DocumentUtils.InsertTextInFile(opath, 0, "This is some really neat shit!\n");
-            Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "!ahead");
-            Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "filename");
+            // TODO Finish
+            PreviewOutputWindow win = new PreviewOutputWindow();
+            win.ShowDialog();
+
+            // TEST - Used when developing parse and insert methods.
+            //string path = @"K:\Projects - Visual Studio 2017\CodeKeeper\docs\test.txt";
+            //string opath = path + ".tmp";
+            //Utilities.DocumentUtils.ParseFile(path);
+            //Utilities.DocumentUtils.InsertTextInFile(opath, 0, "This is some really neat shit!\n");
+            //Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "!ahead");
+            //Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "filename");
         }
     }
 }

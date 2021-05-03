@@ -5,6 +5,7 @@ using CodeKeeper.Repository;
 using CodeKeeper.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -106,12 +107,12 @@ namespace CodeKeeper.Utilities
             return rstr;
         }
 
-        public static List<TagInfo> GetTagInfo(string text)
+        public static ObservableCollection<TagInfo> GetTagInfo(string text)
         {
             Regex rx = new Regex(@"{\{.[^\}]*\}\}");
             MatchCollection matches = rx.Matches(text);
 
-            List<TagInfo> tagInfoList = new List<TagInfo>();
+            ObservableCollection<TagInfo> tagInfoList = new ObservableCollection<TagInfo>();
 
             foreach(Match match in matches)
             {

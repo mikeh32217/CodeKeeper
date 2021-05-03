@@ -1,4 +1,5 @@
-﻿using CodeKeeper.View;
+﻿using CodeKeeper.Model;
+using CodeKeeper.View;
 using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -31,10 +32,14 @@ namespace CodeKeeper.Commands
 
         void ICommand.Execute(object parameter)
         {
-            if (ViewModel.CurrentFile != null)
+            //if (ViewModel.CurrentFile != null)
             {
+
+                // TEST Remove when done testing
+                string file = @"K:\Projects - Visual Studio 2017\CodeKeeper\docs\test.txt";
+
                 // TODO Finish
-                PreviewOutputWindow win = new PreviewOutputWindow(ViewModel.CurrentFile);
+                PreviewOutputWindow win = new PreviewOutputWindow(new FileData(file)); //ViewModel.CurrentFile);
                 win.ShowDialog();
             }
             // TEST - Used when developing parse and insert methods.

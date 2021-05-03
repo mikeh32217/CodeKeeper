@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"         
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
         Title="PreviewOutputWindow" Height="450" Width="800">
-
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,14 +15,24 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <Button Name="clickity" 
-                Content="Clickity" Click="Button_Click"/>
-            <ListView DockPanel.Dock="Left" DataContext="{Binding TagInfoList}"
-                              Name="SnippetListView"
-                              Width="140"
+            <Border Style="{StaticResource ToolBarContainer}">
+                <Button Style="{StaticResource BorderlessButton}"
+                        Command="{Binding BCmd_POW_Toolbar_Refresh}">
+                    <Image Source="pack://application:,,,/Images/refresh.png"/>
+                </Button>
+            </Border>
+            <ListView DockPanel.Dock="Left" DataContext="{Binding TagInfoList, Mode=TwoWay}"
+                              Name="TagInfoListView"
                               SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
-                                Path=DataContext.CurrentSnippet}"
+                                Path=DataContext.CurrentTagInfo}"
                                 ItemsSource="{Binding}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
+                                Path=DataContext.TagInfoSelectionChangedCommand}"
+                            CommandParameter="{Binding ElementName=TagInfoListView, Path=SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
                         <GridView.Columns>
@@ -34,7 +44,8 @@
         </StackPanel>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
         <TextBox Name="textity" Padding="5" Grid.Column="2"
-                 TextWrapping="Wrap"
+                 TextWrapping="Wrap" 
+                 AcceptsReturn="True"
                  FontSize="14" Text="{Binding RawContent}"/>
     </Grid>
 </Window>

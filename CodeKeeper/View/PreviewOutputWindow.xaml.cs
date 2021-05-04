@@ -46,12 +46,15 @@ namespace CodeKeeper.View
                 int line = textity.GetLineIndexFromCharacterIndex(textity.SelectionStart);
                 textity.ScrollToLine(line);
 
+                //? When the button is click it resceives focus an the TextBox (Textity)
+                //  needs time for it to recieve focus so we do that in a thread.  Got 
+                //  this on StackOverflow.
                 Action focusAction = () => textity.Focus();
                 this.Dispatcher.BeginInvoke(focusAction, DispatcherPriority.ApplicationIdle);
             }
             catch(Exception x)
             {
-                MessageBox.Show("TagClickHandler: " + msg);
+                MessageBox.Show("TagClickHandler: " + x.Message);
             }
         }
     }

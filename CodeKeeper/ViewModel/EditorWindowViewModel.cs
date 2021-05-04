@@ -39,7 +39,10 @@ namespace CodeKeeper.ViewModel
             ParentWindow = pwin;
 
             SnippetView = MasterRepository._Snippet.GetAllAsView();
-            CurrentSnippet = SnippetView[0];
+            if (SnippetView.Table.DefaultView.Count > 0)
+                CurrentSnippet = SnippetView[0];
+            else
+                MessageBox.Show("No snippets available");
 
             BCmd_NewEditorCommand = new BCmd_NewEditorCommand(this);
             BCmd_SaveEditorCommand = new BCmd_SaveEditorCommand(this);

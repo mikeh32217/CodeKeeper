@@ -1,4 +1,5 @@
-﻿using CodeKeeper.Keyword;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.Keyword;
 using CodeKeeper.Keyword.Model;
 using CodeKeeper.Model;
 using CodeKeeper.Repository;
@@ -16,6 +17,13 @@ namespace CodeKeeper.Utilities
     {
         private static Stack<string> TrackingStack = new Stack<string>();
 
+        private static string ParseString { get; set; }
+
+        static ParseUtils()
+        {
+            ParseString = ConfigMgr.Instance.settingProvider.GetSingleValue("RegexForParse", "value");
+        }
+
         public static string ParseSnippet(string content, string path = "")
         {
             TrackingStack.Clear();
@@ -25,7 +33,7 @@ namespace CodeKeeper.Utilities
 
         private static string Parse(string content, string path = "")
         {
-            Regex rx = new Regex(@"{\{.[^\}]*\}\}");
+            Regex rx = new Regex(ParseString);
             StringBuilder bld = new StringBuilder();
 
             string replStr = string.Empty;
@@ -109,14 +117,25 @@ namespace CodeKeeper.Utilities
 
         public static ObservableCollection<TagInfo> GetTagInfo(string text)
         {
-            Regex rx = new Regex(@"{\{.[^\}]*\}\}");
+            Regex rx = new Regex(ParseString);
             MatchCollection matches = rx.Matches(text);
+            string innerText = string.Empty;
+            TagInfo.TokenType type = TagInfo.TokenType.Undefined;
 
             ObservableCollection<TagInfo> tagInfoList = new ObservableCollection<TagInfo>();
 
             foreach(Match match in matches)
             {
-                tagInfoList.Add(new TagInfo(match.Index, match.Length, match.Value));
+                innerText = match.Value.Trim().Substring(2, match.Length - 4);
+                if (innerText.StartsWith("!"))
+                {
+                    innerText = innerText.Substring(1);
+                    type = TagInfo.TokenType.Snippet;
+                }
+                else
+                    type = TagInfo.TokenType.Token;
+
+                tagInfoList.Add(new TagInfo(match.Index, match.Length, match.Value, innerText, type));
             }
 
             return tagInfoList;

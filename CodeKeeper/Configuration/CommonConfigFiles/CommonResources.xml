@@ -12,6 +12,7 @@
     <DefaultContent content="Enter content here" />
     <DefaultLanguage language="C++" />
     <DefaultFilename name="default_filename.ext" />
+    <RegexForParse value="{\{.[^\{}]*\}\}"/>
     <MainWindowSize Width="971" Height="583" />
     <EditorWindowSize Width="846" Height="480" />
     <TagWindowSize Width="715" Height="514" />

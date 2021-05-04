@@ -1,3 +1,4 @@
+using CodeKeeper.Configuration;
 using CodeKeeper.Repository;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ namespace CodeKeeper.Utilities
 {
     public class DocumentUtils
     {
+        private static string ParseString { get; set; }
+
+        static DocumentUtils()
+        {
+            ParseString = ConfigMgr.Instance.settingProvider.GetSingleValue("RegexForParse", "value");
+        }
+
         public static bool InsertTextInFile(string path, int line, string txt)
         {
             if (!File.Exists(path))
@@ -80,7 +88,7 @@ namespace CodeKeeper.Utilities
                 return false;
             }
 
-            Regex rx = new Regex(@"{\{.[^\}]*\}\}");
+            Regex rx = new Regex(ParseString);
             MatchCollection matches = null;
             var text = new StringBuilder();
             string res = string.Empty;
@@ -110,7 +118,7 @@ namespace CodeKeeper.Utilities
                 return string.Empty;
             }
 
-            Regex rx = new Regex(@"{\{.[^\}]*\}\}");
+            Regex rx = new Regex(ParseString);
             MatchCollection matches = null;
             var text = new StringBuilder();
             string res = string.Empty;

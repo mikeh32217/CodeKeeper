@@ -15,14 +15,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
-                    <Border x:Name="Border" Padding="0,3,0,3" SnapsToDevicePixels="true"
-                       Background="#F0F0FF" CornerRadius="3" Margin="1" BorderThickness="1">
+                    <Border x:Name="Border" Padding="0,1" SnapsToDevicePixels="true"
+                       Background="#F0F0FF" BorderThickness="1">
                         <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter TargetName="Border" Property="BorderBrush" Value="DarkBlue"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="SkyBlue"/>
                             <Setter TargetName="Border" Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">

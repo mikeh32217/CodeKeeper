@@ -1,13 +1,13 @@
 using CodeKeeper.Configuration;
 using CodeKeeper.Repository;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+
+using ENC = System.Text.Encoding;
 
 namespace CodeKeeper.Utilities
 {
@@ -93,17 +93,25 @@ namespace CodeKeeper.Utilities
             var text = new StringBuilder();
             string res = string.Empty;
 
-            foreach (string s in File.ReadAllLines(path))
-            {
-                matches = rx.Matches(s);
+            Parallel.ForEach(
+                File.ReadLines(path), //returns IEumberable<string>: lazy-loading
+                new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount },
+                (line, state, index) =>
+                {
+                 matches = rx.Matches(line);
                 if (matches.Count > 0)
                 {
-                    res = Utilities.ParseUtils.ParseSnippet(s);
+                    res = Utilities.ParseUtils.ParseSnippet(line);
                     text.Append(res + "\n");
                 }
                 else
-                    text.AppendLine(s);
-            }
+                    text.AppendLine(line);
+                }
+            );
+
+            //foreach (string s in File.ReadAllLines(path))
+            //{
+            //}
 
             File.WriteAllText(path + ".tmp", text.ToString());
 
@@ -149,14 +157,19 @@ namespace CodeKeeper.Utilities
                 return string.Empty;
             }
 
-            var text = new StringBuilder();
-            foreach (string s in File.ReadAllLines(path))
-            {
-                text.Append(s);
-                text.Append("\n");
-            }
+            MemoryStream ms = new MemoryStream();
+            
+            Parallel.ForEach(
+                File.ReadLines(path), //returns IEumberable<string>: lazy-loading
+                new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount },
+                (line, state, index) =>
+                {
+                    ms.Write(ENC.UTF8.GetBytes(line), 0, line.Length);
+                    ms.Write(new byte[] { 0x0a }, 0, 1);
+                }
+            );
 
-                return text.ToString();
+            return ENC.UTF8.GetString(ms.ToArray());
         }
     }
 }

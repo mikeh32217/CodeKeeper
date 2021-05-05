@@ -37,6 +37,9 @@ namespace CodeKeeper.Commands
        {
              string filter = parameter.ToString();
 
+            // Need this here so that when I do a refresh it updates the view also.
+            FilterView = CollectionViewSource.GetDefaultView(ViewModel.TagInfoList);
+
             FilterView.Filter = o =>
             {
                 TagInfo ti = o as TagInfo;

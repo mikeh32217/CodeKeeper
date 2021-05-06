@@ -13,7 +13,7 @@
         <con:TagTypeEnumToImageConverter x:Key="TagTypeConverter" />
     </Window.Resources>
 
-    <Grid>
+    <Grid Margin="4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5" />
@@ -114,9 +114,33 @@
             </ListView>
         </StackPanel>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
-        <TextBox Name="textity" Padding="5" Grid.Column="2"
-                 TextWrapping="Wrap" 
-                 AcceptsReturn="True"
-                 FontSize="14" Text="{Binding RawContent}"/>
+        <DockPanel Grid.Column="2">
+            <Border  DockPanel.Dock="Top" BorderBrush="Silver" BorderThickness="1" Padding="2">
+                <ToolBar ToolBarTray.IsLocked="True"  Margin="-5,0,-13,0" Padding="5,0,0,0"  Background="White">
+                    <Button Command="ApplicationCommands.Cut" Style="{StaticResource BorderlessButton}">
+                    <Image Source="pack://application:,,,/Images/cut.png" Height="32" SnapsToDevicePixels="True" />
+                </Button>
+                    <Button Command="ApplicationCommands.Copy" Style="{StaticResource BorderlessButton}">
+                    <Image Source="pack://application:,,,/Images/copy.png" Height="32" SnapsToDevicePixels="True" />
+                </Button>
+                    <Button Command="ApplicationCommands.Paste" Style="{StaticResource BorderlessButton}">
+                    <Image Source="pack://application:,,,/Images/paste.png" Height="32" SnapsToDevicePixels="True" />
+                </Button>
+                <Separator Margin="3"/>
+                    <Button Command="ApplicationCommands.Undo" Style="{StaticResource BorderlessButton}">
+                    <Image Source="pack://application:,,,/Images/undo.png" Height="32"/>
+                </Button>
+                    <Button Command="ApplicationCommands.Redo" Style="{StaticResource BorderlessButton}">
+                    <Image Source="pack://application:,,,/Images/redo.png" Height="32"/>
+                </Button>
+            </ToolBar>
+            </Border>
+            <TextBox Name="textity" 
+                     DockPanel.Dock="Bottom"
+                     Padding="5"
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"
+                     FontSize="14" Text="{Binding RawContent}"/>
+        </DockPanel>
     </Grid>
 </Window>

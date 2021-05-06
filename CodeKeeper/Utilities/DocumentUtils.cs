@@ -77,8 +77,16 @@ namespace CodeKeeper.Utilities
                 new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount },
                 (line, state, index) =>
                 {
-                    LoadedMemoryStream.Write(ENC.UTF8.GetBytes(line), 0, line.Length);
-                    LoadedMemoryStream.Write(new byte[] { 0x0a }, 0, 1);
+                    try
+                    {
+                        LoadedMemoryStream.Write(ENC.UTF8.GetBytes(line), 0, line.Length);
+                        LoadedMemoryStream.Write(new byte[] { 0x0a }, 0, 1);
+                    }
+                    catch (AggregateException x)
+                    {
+                        // TODO Keep an eye out for this
+                        Environment.Exit(1);
+                    }
                 }
             );
 

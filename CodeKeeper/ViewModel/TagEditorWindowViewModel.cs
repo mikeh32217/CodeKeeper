@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CodeKeeper.ViewModel
 {
@@ -25,7 +26,7 @@ namespace CodeKeeper.ViewModel
             set { SetProperty(ref _currentTag, value); }
         }
 
-        public TagEditorWindowViewModel()
+        public TagEditorWindowViewModel(Window win) : base(win)
         {
             TagView = MasterRepository._Token.GetAllAsView();
             CurrentTag = TagView[0];

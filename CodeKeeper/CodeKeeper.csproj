@@ -355,6 +355,6 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>xcopy /q /y "$(SolutionDir)CodeKeeper\Configuration\CommonConfigFiles\CommonResources.xml" "$(TargetDir)"</PreBuildEvent>
+    <PreBuildEvent>xcopy /q /y /A "$(SolutionDir)CodeKeeper\Configuration\CommonConfigFiles\CommonResources.xml" "$(TargetDir)"</PreBuildEvent>
   </PropertyGroup>
 </Project>

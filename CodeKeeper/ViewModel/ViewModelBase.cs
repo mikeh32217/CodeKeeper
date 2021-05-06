@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeKeeper.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -12,8 +13,47 @@ namespace CodeKeeper.ViewModel
 {
     public class ViewModelBase : DependencyObject, INotifyPropertyChanged
     {
-        public ViewModelBase()
+        public Window ParentWindow;
+
+        private int _windowWidth;
+        private int _windowHeight;
+
+        public int WindowHeight
         {
+            get { return _windowHeight; }
+            set { _windowHeight = value; }
+        }
+
+        public int WindowWidth
+        {
+            get { return _windowWidth; }
+            set
+            {
+                _windowWidth = value;
+            }
+        }
+
+        public ViewModelBase(Window win = null)
+        {
+            ParentWindow = win;
+
+            if (win != null)
+            {
+                int width = 0;
+                int height = 0;
+
+                string w = ConfigMgr.Instance.settingProvider.GetSingleValue(win.Name, "width");
+                string h = ConfigMgr.Instance.settingProvider.GetSingleValue(win.Name, "height");
+
+                w = (w == string.Empty) ? "700" : w;
+                h = (h == string.Empty) ? "550" : h;
+
+                int.TryParse(w, out width);
+                int.TryParse(h, out height);
+
+                _windowWidth = width;
+                _windowHeight = height;
+            }
         }
 
         public bool IsInDesignMode

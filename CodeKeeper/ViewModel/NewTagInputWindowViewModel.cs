@@ -13,14 +13,10 @@ namespace CodeKeeper.ViewModel
         public string NewTagName { get; set; }
         public Int64 NewTagId { get; set; }
 
-        public NewTagInputWindow ParentWindow { get; set; }
-
         public BCmd_NewTagCommand BCmd_NewTagCommand { get; set; }
 
-        public NewTagInputWindowViewModel(NewTagInputWindow win)
+        public NewTagInputWindowViewModel(NewTagInputWindow win) : base(win)
         {
-            ParentWindow = win;
-
             BCmd_NewTagCommand = new BCmd_NewTagCommand(this, win);
         }
     }

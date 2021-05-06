@@ -7,7 +7,10 @@
         xmlns:con="clr-namespace:CodeKeeper.Converters"
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
-        Title="PreviewOutputWindow" Height="450" Width="800">
+        Title="Preview Output Window" 
+        Name="PreviewOutput"
+        Height="{Binding WindowHeight, Mode=TwoWay}" 
+        Width="{Binding WindowWidth, Mode=TwoWay}">
 
     <Window.Resources>
         <con:TagTypeEnumToImageConverter x:Key="TagTypeConverter" />
@@ -116,31 +119,33 @@
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
         <DockPanel Grid.Column="2">
             <Border  DockPanel.Dock="Top" BorderBrush="Silver" BorderThickness="1" Padding="2">
-                <ToolBar ToolBarTray.IsLocked="True"  Margin="-5,0,-13,0" Padding="5,0,0,0"  Background="White">
+                <ToolBar ToolBarTray.IsLocked="True"  Margin="0, 0,-15, 5" Padding="5,0,0,0"  Background="White">
                     <Button Command="ApplicationCommands.Cut" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/cut.png" Height="32" SnapsToDevicePixels="True" />
+                    <Image Source="pack://application:,,,/Images/cut.png" Height="24" SnapsToDevicePixels="True" />
                 </Button>
                     <Button Command="ApplicationCommands.Copy" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/copy.png" Height="32" SnapsToDevicePixels="True" />
+                    <Image Source="pack://application:,,,/Images/copy.png" Height="24" SnapsToDevicePixels="True" />
                 </Button>
                     <Button Command="ApplicationCommands.Paste" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/paste.png" Height="32" SnapsToDevicePixels="True" />
+                    <Image Source="pack://application:,,,/Images/paste.png" Height="24" SnapsToDevicePixels="True" />
                 </Button>
                 <Separator Margin="3"/>
                     <Button Command="ApplicationCommands.Undo" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/undo.png" Height="32"/>
+                    <Image Source="pack://application:,,,/Images/undo.png" Height="24"/>
                 </Button>
                     <Button Command="ApplicationCommands.Redo" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/redo.png" Height="32"/>
+                    <Image Source="pack://application:,,,/Images/redo.png" Height="24"/>
                 </Button>
             </ToolBar>
             </Border>
+            <ScrollViewer DockPanel.Dock="Bottom">
             <TextBox Name="textity" 
-                     DockPanel.Dock="Bottom"
+                     
                      Padding="5"
                      TextWrapping="Wrap" 
                      AcceptsReturn="True"
                      FontSize="14" Text="{Binding RawContent}"/>
+            </ScrollViewer>
         </DockPanel>
     </Grid>
 </Window>

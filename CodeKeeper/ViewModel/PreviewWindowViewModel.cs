@@ -10,15 +10,12 @@ namespace CodeKeeper.ViewModel
 {
     public class PreviewWindowViewModel : ViewModelBase
     {
-        public Window ParentWindow { get; set; }
         public string Content { get; set; }
 
         public DataRowView CurrentSnippet { get; set; }
 
-        public PreviewWindowViewModel(Window win, string content)
+        public PreviewWindowViewModel(Window win, string content) : base(win)
         {
-            ParentWindow = win;
-
             Content = content;
         }
     }

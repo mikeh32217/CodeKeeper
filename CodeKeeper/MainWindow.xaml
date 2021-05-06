@@ -7,11 +7,14 @@
         xmlns:cmd="clr-namespace:CodeKeeper.Commands"
         xmlns:local="clr-namespace:CodeKeeper.ViewModel"
         xmlns:mod="clr-namespace:CodeKeeper.Model"
+        xmlns:view="clr-namespace:CodeKeeper.View"
         xmlns:behaviors="clr-namespace:CodeKeeper.Behaviours"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        SizeChanged="Window_SizeChanged"
-        Title="{Binding Version}" Height="450" Width="800">
+        Title="{Binding Version}" 
+        Name="Main"
+        Height="{Binding WindowHeight, Mode=TwoWay}" 
+        Width="{Binding WindowWidth, Mode=TwoWay}">
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">

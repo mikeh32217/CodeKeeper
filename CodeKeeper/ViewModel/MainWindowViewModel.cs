@@ -41,7 +41,7 @@ namespace CodeKeeper.ViewModel
 
         public TreeViewSelectionChangedCommand TreeViewSelectionChangedCommand { get; set; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(Window win) : base(win)
         {
             // NOTE Version to be changed as needed
             Version = "CodeKeeper V 1.0";

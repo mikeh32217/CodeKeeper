@@ -13,14 +13,10 @@ namespace CodeKeeper.ViewModel
         public string NewSnippetName { get; set; }
         public Int64 NewSnippetId { get; set; }
 
-        public NewSnippetInputWindow ParentWindow { get; set; }
-
         public BCmd_NewSnippetCommand BCmd_NewSnippetCommand { get; set; }
 
-        public NewSnippetWindowViewModel(NewSnippetInputWindow win)
+        public NewSnippetWindowViewModel(NewSnippetInputWindow win) : base(win)
         {
-            ParentWindow = win;
-
             BCmd_NewSnippetCommand = new BCmd_NewSnippetCommand(this, win);
         }
     }

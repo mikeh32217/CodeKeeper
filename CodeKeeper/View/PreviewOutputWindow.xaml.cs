@@ -1,6 +1,8 @@
-﻿using CodeKeeper.Model;
+﻿using CodeKeeper.Configuration;
+using CodeKeeper.Model;
 using CodeKeeper.ViewModel;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -56,6 +58,13 @@ namespace CodeKeeper.View
             {
                 MessageBox.Show("TagClickHandler: " + x.Message);
             }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            ConfigMgr.Instance.settingProvider.SetValue(this.Name, "width", Width.ToString());
+            ConfigMgr.Instance.settingProvider.SetValue(this.Name, "height", Height.ToString());
+            ConfigMgr.Instance.configMgr.SaveConfigChanges();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CodeKeeper.Model;
+using CodeKeeper.View;
 using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            ViewModel.ParentWindow.TagClickHandler((TagInfo)parameter);
+            ((PreviewOutputWindow)ViewModel.ParentWindow).TagClickHandler((TagInfo)parameter);
         }
     }
 }

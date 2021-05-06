@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
-        SizeChanged="Window_SizeChanged"
         Icon="pack://application:,,,/Images/options.png"
         WindowStartupLocation="CenterScreen"
-        Title="Options" Height="450" Width="800">
+        Title="Options" 
+        Name="Options"
+        Height="{Binding WindowHeight, Mode=TwoWay}" 
+        Width="{Binding WindowWidth, Mode=TwoWay}">
 
     <Grid>
 

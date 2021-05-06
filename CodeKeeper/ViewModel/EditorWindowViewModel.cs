@@ -12,8 +12,6 @@ namespace CodeKeeper.ViewModel
 {
     public class EditorWindowViewModel : ViewModelBase
     {
-        public Window ParentWindow { get; set; }
-
         public DataView SnippetView { get; set; }
 
         // TODO Impliment this!
@@ -34,10 +32,8 @@ namespace CodeKeeper.ViewModel
 
         public SnippetListViewSelectionChangedCommand SnippetListViewSelectionChangedCommand { get; set; }
 
-        public EditorWindowViewModel(Window pwin)
+        public EditorWindowViewModel(Window win) : base(win)
         {
-            ParentWindow = pwin;
-
             SnippetView = MasterRepository._Snippet.GetAllAsView();
             if (SnippetView.Table.DefaultView.Count > 0)
                 CurrentSnippet = SnippetView[0];

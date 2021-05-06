@@ -6,10 +6,12 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"                      
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
-        SizeChanged="Window_SizeChanged"
         WindowStartupLocation="CenterScreen"
         Icon="pack://application:,,,/Images/snippet.png"
-        Title="Snippet Editor" Height="450" Width="800" >
+        Title="Snippet Editor"         
+        Name="Editor"
+        Height="{Binding WindowHeight, Mode=TwoWay}" 
+        Width="{Binding WindowWidth, Mode=TwoWay}">
 
     <DockPanel Margin="0 0 0 5">
         <Border Style="{StaticResource ToolBarContainer}" DockPanel.Dock="Top">

@@ -2,6 +2,7 @@
 using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,14 +28,14 @@ namespace CodeKeeper.View
         {
             InitializeComponent();
 
-            ViewModel = new OptionsWindowViewModel();
+            ViewModel = new OptionsWindowViewModel(this);
             DataContext = ViewModel;
         }
 
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
-            ConfigMgr.Instance.settingProvider.SetValue("OptionWindowSize", "Width", e.NewSize.Width.ToString());
-            ConfigMgr.Instance.settingProvider.SetValue("OptionWindowSize", "Height", e.NewSize.Height.ToString());
+            ConfigMgr.Instance.settingProvider.SetValue(Name, "width", Width.ToString());
+            ConfigMgr.Instance.settingProvider.SetValue(Name, "height", Height.ToString());
             ConfigMgr.Instance.configMgr.SaveConfigChanges();
         }
     }

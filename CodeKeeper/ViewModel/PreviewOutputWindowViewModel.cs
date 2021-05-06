@@ -14,8 +14,6 @@ namespace CodeKeeper.ViewModel
 {
     public class PreviewOutputWindowViewModel : ViewModelBase
     {
-        public PreviewOutputWindow ParentWindow { get; set; }
-
         private static DataView TokenView = null;
         private static DataView TagView = null;
 
@@ -49,10 +47,8 @@ namespace CodeKeeper.ViewModel
 
         public string RawContent { get; set; }
 
-        public PreviewOutputWindowViewModel(PreviewOutputWindow win)
+        public PreviewOutputWindowViewModel(PreviewOutputWindow win) : base(win)
         {
-            ParentWindow = win;
-
             RawContent = Utilities.DocumentUtils.LoadFile(win.FileInfo.Name);
 
             TokenView = MasterRepository._Token.GetAllAsView();
@@ -73,7 +69,7 @@ namespace CodeKeeper.ViewModel
 
         public void RefreshTagList()
         {
-            ParentWindow.TagInfoListView.ItemsSource = null;
+            ((PreviewOutputWindow)ParentWindow).TagInfoListView.ItemsSource = null;
 
             // At first go this will be null...duh!
             if (_tagInfoList != null)
@@ -83,7 +79,7 @@ namespace CodeKeeper.ViewModel
             foreach (TagInfo ti in TagInfoList)
                 GetValidTagInfo(ti);
 
-            ParentWindow.TagInfoListView.ItemsSource = TagInfoList;
+            ((PreviewOutputWindow)ParentWindow).TagInfoListView.ItemsSource = TagInfoList;
         }
 
         private static TagInfo GetValidTagInfo(TagInfo ti)

@@ -7,9 +7,12 @@ using CodeKeeper.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
+
+using ENC = System.Text.Encoding;
 
 namespace CodeKeeper.Utilities
 {
@@ -28,32 +31,39 @@ namespace CodeKeeper.Utilities
         {
             TrackingStack.Clear();
 
-            return Parse(content, path);
+            return ParseFile(content, path);
         }
 
-        private static string Parse(string content, string path = "")
+        public static string ParseFile(string content, string path = "")
         {
             Regex rx = new Regex(ParseString);
-            StringBuilder bld = new StringBuilder();
 
             string replStr = string.Empty;
+            string res = string.Empty;
 
             int cursor = 0;
+
+            byte[] ary = ENC.ASCII.GetBytes(content);
+
+            MemoryStream ms = new MemoryStream();
 
             MatchCollection matches = rx.Matches(content);
             foreach (Match match in matches)
             {
-                bld.Append(content, cursor, match.Index - cursor);
-                replStr = GetReplacement(match, path);
+               ms.Write(ENC.ASCII.GetBytes(content), cursor, match.Index - cursor);
+               cursor = match.Index + match.Length;
+               replStr = GetReplacement(match, path);
                 if (replStr != string.Empty)
-                    bld.Append(replStr);
-
-                cursor = match.Index + match.Length;
+                    ms.Write(ENC.UTF8.GetBytes(replStr), 0, replStr.Length);
             }
 
-            bld.Append(content, cursor, content.Length - cursor);
+            ms.Write(ENC.ASCII.GetBytes(content), cursor, content.Length - cursor);
 
-            return bld.ToString();
+            res = ENC.ASCII.GetString(ms.ToArray());
+
+            ms.Dispose();
+
+            return res;
         }
 
         private static string GetReplacement(Match match, string path)
@@ -85,7 +95,7 @@ namespace CodeKeeper.Utilities
                     else
                     {
                         TrackingStack.Push(tag);
-                        rstr = Parse(snip);
+                        rstr = ParseFile(snip);
                     }
                 }
                 else

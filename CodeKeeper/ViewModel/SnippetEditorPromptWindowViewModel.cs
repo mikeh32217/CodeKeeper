@@ -10,15 +10,12 @@ namespace CodeKeeper.ViewModel
 {
     public class SnippetEditorPromptWindowViewModel : ViewModelBase
     {
-        public SnippetEditorPromptWindow ParentWindow { get; set; }
-
         public string PromptText { get; set; }
         public string PromptTextBoxText { get; set; }
         public BCmd_SnippetEditorWindowGeneriCommand BCmd_SnippetEditorWindowGeneriCommand { get; set; }
 
         public SnippetEditorPromptWindowViewModel(SnippetEditorPromptWindow win, string prompt)
         {
-            ParentWindow = win;
             PromptText = prompt;
 
             BCmd_SnippetEditorWindowGeneriCommand = new BCmd_SnippetEditorWindowGeneriCommand(ParentWindow, this);

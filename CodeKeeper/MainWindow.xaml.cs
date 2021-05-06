@@ -1,7 +1,9 @@
 using CodeKeeper.Configuration;
 using CodeKeeper.Events;
+using CodeKeeper.View;
 using CodeKeeper.ViewModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 
 namespace CodeKeeper
@@ -22,17 +24,16 @@ namespace CodeKeeper
                 Height = int.Parse(wsz["Height"].ToString());
             }
 
-            MainWindowViewModel mwvm = new MainWindowViewModel();
+            MainWindowViewModel mwvm = new MainWindowViewModel(this);
 
             DataContext = mwvm;
         }
 
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
-            ConfigMgr.Instance.settingProvider.SetValue("MainWindowSize", "Width", e.NewSize.Width.ToString());
-            ConfigMgr.Instance.settingProvider.SetValue("MainWindowSize", "Height", e.NewSize.Height.ToString());
+            ConfigMgr.Instance.settingProvider.SetValue(this.Name, "width", Width.ToString());
+            ConfigMgr.Instance.settingProvider.SetValue(this.Name, "height", Height.ToString());
             ConfigMgr.Instance.configMgr.SaveConfigChanges();
         }
-
     }
 }

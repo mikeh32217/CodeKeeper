@@ -34,7 +34,12 @@
                 </Button>
             </StackPanel>
         </Border>
-        <DockPanel DockPanel.Dock="Bottom" >
+        <Grid DockPanel.Dock="Bottom" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
             <Border Visibility="Visible" BorderThickness="1" BorderBrush="LightSteelBlue">
                 <StackPanel Margin="3">
                     <Label  Height="25" Content="Tags" 
@@ -44,7 +49,6 @@
                     <Grid>
                         <ListView DockPanel.Dock="Left" DataContext="{Binding SnippetView}"
                               Name="SnippetListView"
-                              Width="140"
                               SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
                                 Path=DataContext.CurrentSnippet}"
                                 ItemsSource="{Binding}">
@@ -59,7 +63,8 @@
                     </Grid>
                 </StackPanel>
             </Border>
-            <Grid DataContext="{Binding CurrentSnippet}" Margin="5 0">
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+            <Grid DataContext="{Binding CurrentSnippet}" Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="34"/>
                     <RowDefinition Height="34"/>
@@ -82,6 +87,6 @@
                     </TextBox>
                 </ScrollViewer>
             </Grid>
-        </DockPanel>
+        </Grid>
     </DockPanel>
 </Window>

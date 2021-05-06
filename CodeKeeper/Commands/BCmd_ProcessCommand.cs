@@ -36,7 +36,7 @@ namespace CodeKeeper.Commands
             {
 
                 // TEST Remove when done testing
-                string file = @"K:\Projects - Visual Studio 2017\CodeKeeper\docs\test.txt";
+                string file = @"K:\Projects - Visual Studio 2017\CodeKeeper\CodeKeeper\TestData\class.txt";
 
                 // TODO Finish
                 PreviewOutputWindow win = new PreviewOutputWindow(new FileData(file)); //ViewModel.CurrentFile);

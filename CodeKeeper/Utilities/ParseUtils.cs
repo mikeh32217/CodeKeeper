@@ -95,7 +95,7 @@ namespace CodeKeeper.Utilities
                     else
                     {
                         TrackingStack.Push(tag);
-                        rstr = ParseFile(snip);
+                        rstr = ParseFile(snip, path);
                     }
                 }
                 else

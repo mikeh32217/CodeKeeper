@@ -16,8 +16,8 @@ namespace CodeKeeper.View
     public partial class PreviewOutputWindow : Window
     {
         public PreviewOutputWindowViewModel ViewModal { get; set; }
-        public FileData FileInfo { get; set; }
 
+        public FileData FileInfo { get; set; }
 
         public PreviewOutputWindow(FileData file)
         {

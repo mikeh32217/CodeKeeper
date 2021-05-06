@@ -1,4 +1,5 @@
-﻿using CodeKeeper.ViewModel;
+﻿using CodeKeeper.View;
+using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,8 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            
+            PreviewOutputProcessWindow win = new PreviewOutputProcessWindow(ViewModel.RawContent, ViewModel.FileInfo);
+            win.ShowDialog();
         }
     }
 }

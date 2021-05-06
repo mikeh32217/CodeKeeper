@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace CodeKeeper.ViewModel
     {
         private static DataView TokenView = null;
         private static DataView TagView = null;
+
+        public FileData FileInfo { get; set; }
 
         public BCmd_POW_Toolbar_Refresh BCmd_POW_Toolbar_Refresh { get; set; }
         public BCmd_POW_Toolbar_Process BCmd_POW_Toolbar_Process{ get; set; }
@@ -49,7 +52,9 @@ namespace CodeKeeper.ViewModel
 
         public PreviewOutputWindowViewModel(PreviewOutputWindow win) : base(win)
         {
-            RawContent = Utilities.DocumentUtils.LoadFile(win.FileInfo.Name);
+            FileInfo = win.FileInfo;
+
+            RawContent = Utilities.DocumentUtils.LoadFile(FileInfo.Name);
 
             TokenView = MasterRepository._Token.GetAllAsView();
             TagView = MasterRepository._Snippet.GetAllAsView();

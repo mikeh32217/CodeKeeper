@@ -5,9 +5,11 @@ using CodeKeeper.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,7 +44,7 @@ namespace CodeKeeper.ViewModel
             }
             set
             {
-                _tagInfoList = value;
+               SetProperty(ref _tagInfoList, value);
             }
         }
 
@@ -74,8 +76,6 @@ namespace CodeKeeper.ViewModel
 
         public void RefreshTagList()
         {
-            ((PreviewOutputWindow)ParentWindow).TagInfoListView.ItemsSource = null;
-
             // At first go this will be null...duh!
             if (_tagInfoList != null)
                 _tagInfoList.Clear();
@@ -83,8 +83,6 @@ namespace CodeKeeper.ViewModel
             TagInfoList = Utilities.ParseUtils.GetTagInfo(RawContent);
             foreach (TagInfo ti in TagInfoList)
                 GetValidTagInfo(ti);
-
-            ((PreviewOutputWindow)ParentWindow).TagInfoListView.ItemsSource = TagInfoList;
         }
 
         private static TagInfo GetValidTagInfo(TagInfo ti)

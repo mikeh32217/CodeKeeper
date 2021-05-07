@@ -133,6 +133,7 @@
     <Compile Include="Commands\BCmd_OpenProjectDirectoryCommand.cs" />
     <Compile Include="Commands\BCmd_OpenSnippetEditorCommand.cs" />
     <Compile Include="Commands\BCmd_OpenTagEditorCommand.cs" />
+    <Compile Include="Commands\BCmd_POPW_Save_Command.cs" />
     <Compile Include="Commands\BCmd_POW_Toolbar_Process.cs" />
     <Compile Include="Commands\BCmd_POW_Toolbar_Refresh.cs" />
     <Compile Include="Commands\BCmd_POW_Toolbar_Validate.cs" />

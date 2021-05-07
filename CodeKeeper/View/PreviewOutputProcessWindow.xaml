@@ -12,22 +12,25 @@
 
     <DockPanel Grid.Column="2">
         <Border  DockPanel.Dock="Top" BorderBrush="Silver" BorderThickness="1" Padding="2">
-            <ToolBar ToolBarTray.IsLocked="True"  Margin="0, 0,-15, 5" Padding="5,0,0,0"  Background="White">
+            <ToolBar Style="{StaticResource ToolBarWithoutOverflowBarStyle}" Padding="5 2">
+                <Button Command="{Binding BCmd_POPW_Save_Command}" Style="{StaticResource BorderlessButton}">
+                    <Image Source="pack://application:,,,/Images/diskdrive.png" Height="22" />
+                </Button>
                 <Button Command="ApplicationCommands.Cut" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/cut.png" Height="24" SnapsToDevicePixels="True" />
+                    <Image Source="pack://application:,,,/Images/cut.png" Height="22" SnapsToDevicePixels="True" />
                 </Button>
                 <Button Command="ApplicationCommands.Copy" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/copy.png" Height="24" SnapsToDevicePixels="True" />
+                    <Image Source="pack://application:,,,/Images/copy.png" Height="22" SnapsToDevicePixels="True" />
                 </Button>
                 <Button Command="ApplicationCommands.Paste" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/paste.png" Height="24" SnapsToDevicePixels="True" />
+                    <Image Source="pack://application:,,,/Images/paste.png" Height="22" SnapsToDevicePixels="True" />
                 </Button>
                 <Separator Margin="3"/>
                 <Button Command="ApplicationCommands.Undo" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/undo.png" Height="24"/>
+                    <Image Source="pack://application:,,,/Images/undo.png" Height="22"/>
                 </Button>
                 <Button Command="ApplicationCommands.Redo" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/redo.png" Height="24"/>
+                    <Image Source="pack://application:,,,/Images/redo.png" Height="22"/>
                 </Button>
             </ToolBar>
         </Border>

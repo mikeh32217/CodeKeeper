@@ -32,7 +32,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            ViewModel.CurrentSnippet = parameter as DataRowView;
+ //           ViewModel.CurrentSnippet = parameter as DataRowView;
         }
     }
 }

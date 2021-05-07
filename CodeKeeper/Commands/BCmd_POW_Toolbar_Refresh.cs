@@ -1,4 +1,5 @@
-﻿using CodeKeeper.ViewModel;
+﻿using CodeKeeper.Events;
+using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            ViewModel.RefreshTagList();
+            App.g_eventAggregator.GetEvent<TagRefreshEvent>().Publish(new UpdateMessage(true));
         }
     }
 }

@@ -1,5 +1,5 @@
 
-{{prompt}}
+{{!mhead}}
 
 using CodeKeeper.Configuration;
 using System;
@@ -123,4 +123,4 @@ namespace CodeKeeper.ViewModel
     #endregion
 }
 
- *
+{{shit}}

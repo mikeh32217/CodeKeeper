@@ -17,9 +17,6 @@ namespace CodeKeeper.ViewModel
 {
     public class PreviewOutputWindowViewModel : ViewModelBase
     {
-        private static DataView TokenView = null;
-        private static DataView TagView = null;
-
         public FileData FileInfo { get; set; }
 
         public BCmd_POW_Toolbar_Refresh BCmd_POW_Toolbar_Refresh { get; set; }
@@ -28,11 +25,8 @@ namespace CodeKeeper.ViewModel
 
         // Invoke commands
         public TagInfoSelectionChangedCommand TagInfoSelectionChangedCommand { get; set; }
-        public FilterTextChangedCommand FilterTextChangedCommand { get; set; }
-
 
         private ObservableCollection<TagInfo> _tagInfoList;
-
         public ObservableCollection<TagInfo> TagInfoList
         {
             get
@@ -58,68 +52,13 @@ namespace CodeKeeper.ViewModel
 
             RawContent = Utilities.DocumentUtils.LoadFile(FileInfo.Name);
 
-            TokenView = MasterRepository._Token.GetAllAsView();
-            TagView = MasterRepository._Snippet.GetAllAsView();
-
-            RefreshTagList();
-
             TagInfoSelectionChangedCommand = new TagInfoSelectionChangedCommand(this);
             BCmd_POW_Toolbar_Refresh = new BCmd_POW_Toolbar_Refresh(this);
             BCmd_POW_Toolbar_Process = new BCmd_POW_Toolbar_Process(this);
             BCmd_POW_Toolbar_Validate = new BCmd_POW_Toolbar_Validate(this);
 
-            FilterTextChangedCommand = new FilterTextChangedCommand(this);
-
             // NOTE This loads the parsed file into the TextBox
             //  LongText = Utilities.DocumentUtils.PreviewFile(win.FileInfo.Name);
         }
-
-        public void RefreshTagList()
-        {
-            // At first go this will be null...duh!
-            if (_tagInfoList != null)
-                _tagInfoList.Clear();
-
-            TagInfoList = Utilities.ParseUtils.GetTagInfo(RawContent);
-            foreach (TagInfo ti in TagInfoList)
-                GetValidTagInfo(ti);
-        }
-
-        private static TagInfo GetValidTagInfo(TagInfo ti)
-        {
-            bool fnd = false;
-
-            if (ti.TagType == TagInfo.TokenType.Snippet)
-            {
-                // Look in the Snippet list
-                MasterRepository._Snippet.GetSnippetByTag(ti.LinkTargetInnerText);
-                if (MasterRepository._Snippet.WorkingView.Count > 0)
-                {
-                    ti.TagType = TagInfo.TokenType.Snippet;
-                    ti.IsValid = true;
-                    fnd = true;
-                }
-            }
-            else
-            {
-                MasterRepository._Token.GetTokenByTag(ti.LinkTargetInnerText);
-                if (MasterRepository._Token.WorkingView.Count > 0)
-                {
-                    ti.TagType = TagInfo.TokenType.Token;
-                    ti.IsValid = true;
-                    fnd = true;
-                }
-            }
-
-            // If not found in either place it is undefined.
-            if (!fnd)
-            {
-                ti.TagType = TagInfo.TokenType.Undefined;
-                ti.IsValid = false;
-            }
-
-            return ti;
-        }
-
     }
 }

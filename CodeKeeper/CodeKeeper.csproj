@@ -157,6 +157,7 @@
     <Compile Include="Events\DirectoryEvent.cs" />
     <Compile Include="Events\GenericEvent.cs" />
     <Compile Include="Behaviors\GridViewColumnResizeBehavior.cs" />
+    <Compile Include="Events\TagRefreshEvent.cs" />
     <Compile Include="Keyword\KeywordManager.cs" />
     <Compile Include="Keyword\Model\Date.cs" />
     <Compile Include="Keyword\Model\Prompt.cs" />
@@ -171,6 +172,10 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\SnippetsRepository.cs" />
     <Compile Include="Repository\TokensRepositlry.cs" />
+    <Compile Include="UserControls\ListViewFilterControl.xaml.cs">
+      <DependentUpon>ListViewFilterControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Utilities\DateTimeFormatter.cs" />
     <Compile Include="Utilities\DocumentUtils.cs" />
     <Compile Include="Utilities\NormalizeText.cs" />
@@ -232,6 +237,10 @@
     <Page Include="Resources\ToolbarDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListViewFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\EditorWindow.xaml">
       <SubType>Designer</SubType>

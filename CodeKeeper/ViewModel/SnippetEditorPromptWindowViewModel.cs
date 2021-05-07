@@ -14,7 +14,7 @@ namespace CodeKeeper.ViewModel
         public string PromptTextBoxText { get; set; }
         public BCmd_SnippetEditorWindowGeneriCommand BCmd_SnippetEditorWindowGeneriCommand { get; set; }
 
-        public SnippetEditorPromptWindowViewModel(SnippetEditorPromptWindow win, string prompt)
+        public SnippetEditorPromptWindowViewModel(SnippetEditorPromptWindow win, string prompt) : base(win)
         {
             PromptText = prompt;
 

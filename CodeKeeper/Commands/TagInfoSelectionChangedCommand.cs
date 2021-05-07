@@ -21,6 +21,9 @@ namespace CodeKeeper.Commands
             ViewModel = vm;
         }
 
+        public TagInfoSelectionChangedCommand()
+        { }
+
         public bool CanExecute(object parameter)
         {
             return true;

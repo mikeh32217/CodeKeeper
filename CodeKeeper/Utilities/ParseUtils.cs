@@ -138,10 +138,7 @@ namespace CodeKeeper.Utilities
             {
                 innerText = match.Value.Trim().Substring(2, match.Length - 4);
                 if (innerText.StartsWith("!"))
-                {
-                    innerText = innerText.Substring(1);
                     type = TagInfo.TokenType.Snippet;
-                }
                 else
                     type = TagInfo.TokenType.Token;
 

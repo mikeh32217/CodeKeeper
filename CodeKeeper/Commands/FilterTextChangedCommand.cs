@@ -1,4 +1,5 @@
 ﻿using CodeKeeper.Model;
+using CodeKeeper.UserControls;
 using CodeKeeper.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -14,16 +16,14 @@ namespace CodeKeeper.Commands
 {
     public class FilterTextChangedCommand : ICommand
     {
-        public PreviewOutputWindowViewModel ViewModel { get; set; }
+        public ListViewFilterControl UControl { get; set; }
 
         private ICollectionView FilterView;
 
-
-        public FilterTextChangedCommand(PreviewOutputWindowViewModel vm)
+        public FilterTextChangedCommand(ListViewFilterControl ctrl)
         {
-            ViewModel = vm;
-
-            FilterView = CollectionViewSource.GetDefaultView(ViewModel.TagInfoList);
+            UControl = ctrl;
+            FilterView = CollectionViewSource.GetDefaultView(UControl.TagInfoList);
         }
 
         public event EventHandler CanExecuteChanged;
@@ -38,7 +38,7 @@ namespace CodeKeeper.Commands
              string filter = parameter.ToString();
             
             // Need this here so that when I do a refresh it updates the view also.
-            FilterView = CollectionViewSource.GetDefaultView(ViewModel.TagInfoList);
+            FilterView = CollectionViewSource.GetDefaultView(UControl.TagInfoList);
 
             FilterView.Filter = o =>
             {
@@ -46,6 +46,5 @@ namespace CodeKeeper.Commands
                 return ti.LinkTargetInnerText.Contains(filter);
             };
         }
-
     }
 }

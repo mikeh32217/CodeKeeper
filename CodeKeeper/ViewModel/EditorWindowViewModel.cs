@@ -12,7 +12,7 @@ namespace CodeKeeper.ViewModel
 {
     public class EditorWindowViewModel : ViewModelBase
     {
-        public DataView SnippetView { get; set; }
+        public DataView ItemView { get; set; }
 
         // TODO Impliment this!
         public bool Isirty { get; set; }
@@ -34,9 +34,9 @@ namespace CodeKeeper.ViewModel
 
         public EditorWindowViewModel(Window win) : base(win)
         {
-            SnippetView = MasterRepository._Snippet.GetAllAsView();
-            if (SnippetView.Table.DefaultView.Count > 0)
-                _currentItem = SnippetView[0];
+            ItemView = MasterRepository._Snippet.GetAllAsView();
+            if (ItemView.Table.DefaultView.Count > 0)
+                _currentItem = ItemView[0];
             else
                 MessageBox.Show("No snippets available");
 

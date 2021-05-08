@@ -12,7 +12,7 @@ namespace CodeKeeper.ViewModel
 {
     public class TagEditorWindowViewModel : ViewModelBase
     {
-        public DataView TagView { get; set; }
+        public DataView ItemView { get; set; }
 
         public BCmd_NewTagEditorCommand BCmd_NewTagEditorCommand { get; set; }
         public BCmd_SaveTagEditorCommand BCmd_SaveTagEditorCommand { get; set; }
@@ -28,8 +28,8 @@ namespace CodeKeeper.ViewModel
 
         public TagEditorWindowViewModel(Window win) : base(win)
         {
-            TagView = MasterRepository._Token.GetAllAsView();
-            CurrentItem = TagView[0];
+            ItemView = MasterRepository._Token.GetAllAsView();
+            CurrentItem = ItemView[0];
 
             BCmd_NewTagEditorCommand = new BCmd_NewTagEditorCommand(this);
             BCmd_SaveTagEditorCommand = new BCmd_SaveTagEditorCommand(this);

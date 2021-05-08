@@ -65,7 +65,7 @@
         <ListView Name="TagInfoListView"
                 DataContext="{Binding ItemView}" Grid.Row="2"
                 SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
-                Path=DataContext.CurrentItem}"
+                    Path=DataContext.CurrentItem}"
                 ItemsSource="{Binding }">
             <ListView.View>
                 <GridView>

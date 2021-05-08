@@ -14,8 +14,9 @@
         <Border  DockPanel.Dock="Top" BorderBrush="Silver" BorderThickness="1" Padding="2">
             <ToolBar Style="{StaticResource ToolBarWithoutOverflowBarStyle}" Padding="5 2">
                 <Button Command="{Binding BCmd_POPW_Save_Command}" Style="{StaticResource BorderlessButton}">
-                    <Image Source="pack://application:,,,/Images/diskdrive.png" Height="22" />
+                    <Image Source="pack://application:,,,/Images/save.png" Height="22" />
                 </Button>
+                <Separator />
                 <Button Command="ApplicationCommands.Cut" Style="{StaticResource BorderlessButton}">
                     <Image Source="pack://application:,,,/Images/cut.png" Height="22" SnapsToDevicePixels="True" />
                 </Button>
@@ -25,7 +26,7 @@
                 <Button Command="ApplicationCommands.Paste" Style="{StaticResource BorderlessButton}">
                     <Image Source="pack://application:,,,/Images/paste.png" Height="22" SnapsToDevicePixels="True" />
                 </Button>
-                <Separator Margin="3"/>
+                <Separator />
                 <Button Command="ApplicationCommands.Undo" Style="{StaticResource BorderlessButton}">
                     <Image Source="pack://application:,,,/Images/undo.png" Height="22"/>
                 </Button>

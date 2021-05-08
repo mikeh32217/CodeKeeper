@@ -1,5 +1,6 @@
 using CodeKeeper.Configuration;
 using CodeKeeper.Repository;
+using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Text;
@@ -67,34 +68,39 @@ namespace CodeKeeper.Utilities
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return "File not found";
-                    ;
             }
 
             MemoryStream LoadedMemoryStream = new MemoryStream();
 
-            Parallel.ForEach(
-                File.ReadLines(path), //returns IEumberable<string>: lazy-loading
-                new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount },
-                (line, state, index) =>
-                {
-                    try
-                    {
-                        LoadedMemoryStream.Write(ENC.UTF8.GetBytes(line), 0, line.Length);
-                        LoadedMemoryStream.Write(new byte[] { 0x0a }, 0, 1);
-                    }
-                    catch (AggregateException x)
-                    {
-                        // TODO Keep an eye out for this
-                        Environment.Exit(1);
-                    }
-                }
-            );
+            // NOTE Tried loading using Paralell librasry but would load in raNDOME ORDER.
+            foreach(string s in File.ReadLines(path))
+            {
+                LoadedMemoryStream.Write(ENC.ASCII.GetBytes( s), 0, s.Length);
+                LoadedMemoryStream.Write(new byte[] { 0x0a }, 0, 1);
+            }
 
             LoadedText = ENC.UTF8.GetString(LoadedMemoryStream.ToArray());
 
             LoadedMemoryStream.Dispose();
 
             return LoadedText;
+        }
+
+        public static void SaveFile(string path, string content)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+
+            if (path != null)
+            {
+                dlg.FileName = Path.GetDirectoryName(path);
+                dlg.InitialDirectory = Path.GetFullPath(path);
+            }
+
+            if (dlg.ShowDialog() != null)
+            {
+                path = dlg.FileName;
+                File.WriteAllText(path, content);
+            }
         }
     }
 }

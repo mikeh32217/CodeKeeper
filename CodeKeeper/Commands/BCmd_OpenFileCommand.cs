@@ -36,6 +36,8 @@ namespace CodeKeeper.Commands
             if (fd.ShowDialog() == true)
             {
                 FileName = fd.FileName;
+
+                // NOTE Right now this goes nowhere
                 GenericMessage msg = new GenericMessage(FileName);
                 App.g_eventAggregator.GetEvent<GenericEvent>().Publish(msg);
             }

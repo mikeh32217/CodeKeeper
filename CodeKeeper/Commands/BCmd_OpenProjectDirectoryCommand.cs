@@ -40,7 +40,8 @@ namespace CodeKeeper.Commands
                 ConfigMgr.Instance.settingProvider.SetValue("DefaultDirectory", "path", FullPath);
                 ConfigMgr.Instance.configMgr.SaveConfigChanges();
 
-                DirectoryMessage msg = new DirectoryMessage(new TreeNode(FullPath, DF_TYPE.Directory));
+                // NOTE Sent to MainWindowViewMdoel to set directory path for treeview
+                TreeNodeMessage msg = new TreeNodeMessage(new TreeNode(FullPath, DF_TYPE.Directory));
                 App.g_eventAggregator.GetEvent<DirectoryEvent>().Publish(msg);
             }
             else

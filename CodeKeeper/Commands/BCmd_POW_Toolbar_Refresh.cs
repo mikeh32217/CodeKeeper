@@ -27,7 +27,8 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            App.g_eventAggregator.GetEvent<TagRefreshEvent>().Publish(new UpdateMessage(true));
+            // NO(TE Send to ListViewFilterControl to RefreshTagList
+            App.g_eventAggregator.GetEvent<TagRefreshEvent>().Publish();
         }
     }
 }

@@ -47,7 +47,9 @@ namespace CodeKeeper.ViewModel
             // NOTE Version to be changed as needed
             Version = "CodeKeeper V 1.0";
 
-            // TreeView SelectionChangeed notification
+            // NOTE TreeView SelectionChangeed notification from;
+            //  BCmd_OpenProjectDirectoryCommand
+            //  TreeViewSelectionChangedCommand
             App.g_eventAggregator.GetEvent<DirectoryEvent>().Subscribe(DirectoryMessageCallback);
 
             BCmd_OpenProjectDirectoryCommand = new BCmd_OpenProjectDirectoryCommand();
@@ -62,32 +64,32 @@ namespace CodeKeeper.ViewModel
             TreeViewSelectionChangedCommand = new TreeViewSelectionChangedCommand();
 
             string path = ConfigMgr.Instance.settingProvider.GetSingleValue("DefaultDirectory", "path");
-            DirectoryMessageCallback(new DirectoryMessage(new TreeNode(path)));
+            DirectoryMessageCallback(new TreeNodeMessage(new TreeNode(path)));
         }
 
-        private void DirectoryMessageCallback(DirectoryMessage node)
+        private void DirectoryMessageCallback(TreeNodeMessage node)
         {
-            bool res = CheckDirectoryAuthorization(node.NodeMsg.FullPath);
+            bool res = CheckDirectoryAuthorization(node.Node.FullPath);
             if (!_initializing && !res)
                 return;
 
             _initializing = false;
 
-            if (node.NodeMsg.Type == DF_TYPE.Directory)
+            if (node.Node.Type == DF_TYPE.Directory)
             {
                 TreeNodeCollection.Clear();
 
-                TreeNode root = new TreeNode(node.NodeMsg.Name);
+                TreeNode root = new TreeNode(node.Node.Name);
                 TreeNodeCollection.Add(root);
 
-                DirectoryInfo di = new DirectoryInfo(node.NodeMsg.Name);
+                DirectoryInfo di = new DirectoryInfo(node.Node.Name);
                 TraverseDirectory(di, root);
             }
             else
             {
                 FileCollection.Clear();
 
-                string[] info = Directory.GetFiles(node.NodeMsg.FullPath);
+                string[] info = Directory.GetFiles(node.Node.FullPath);
                 foreach (string s in info)
                     FileCollection.Add(new FileData(s));
             }

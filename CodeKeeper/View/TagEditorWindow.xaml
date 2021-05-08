@@ -14,11 +14,11 @@
         Width="{Binding WindowWidth, Mode=TwoWay}">
 
     <DockPanel Margin="0 0 0 5">
-        <Border Style="{StaticResource ToolBarContainer}" DockPanel.Dock="Top">
-            <StackPanel x:Name="TagEditorToolBar" Orientation="Horizontal">
+        <Border  DockPanel.Dock="Top" BorderBrush="SlateGray" BorderThickness="1" Height="38" Margin="3">
+            <ToolBar Style="{StaticResource ToolBarWithoutOverflowBarStyle}">
                 <Button Style="{StaticResource BorderlessButton}"
                     Command="{Binding BCmd_NewTagEditorCommand}">
-                    <Image Source="pack://application:,,,/Images/new.png"/>
+                    <Image Source="pack://application:,,,/Images/docnew.png"/>
                 </Button>
                 <Button Style="{StaticResource BorderlessButton}"
                 Command="{Binding BCmd_SaveTagEditorCommand}">
@@ -28,7 +28,7 @@
                 Command="{Binding BCmd_DeleteTagEditorCommand}">
                     <Image Source="pack://application:,,,/Images/delete.png"/>
                 </Button>
-            </StackPanel>
+            </ToolBar>
         </Border>
         <DockPanel DockPanel.Dock="Bottom">
             <Grid>

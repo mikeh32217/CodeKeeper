@@ -9,18 +9,8 @@ using static CodeKeeper.Model.TreeNode;
 
 namespace CodeKeeper.Events
 {
-    public class DirectoryEvent : PubSubEvent<DirectoryMessage>
+    public class DirectoryEvent : PubSubEvent<TreeNodeMessage>
     {
 
-    }
-
-    public class DirectoryMessage
-    {
-        public TreeNode NodeMsg { get; set; }
-
-        public DirectoryMessage(TreeNode node)
-        {
-            NodeMsg = node;
-        }
     }
 }

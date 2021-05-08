@@ -1,8 +1,8 @@
-﻿using CodeKeeper.Repository;
-using CodeKeeper.ViewModel;
+﻿using CodeKeeper.ViewModel;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +10,13 @@ using System.Windows.Input;
 
 namespace CodeKeeper.Commands
 {
-    public class BCmd_POW_Toolbar_Validate : ICommand
+    public class BCmd_POW_Toolbar_Save : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
         public PreviewOutputWindowViewModel ViewModel { get; set; }
 
-        public BCmd_POW_Toolbar_Validate(PreviewOutputWindowViewModel vm)
+        public BCmd_POW_Toolbar_Save(PreviewOutputWindowViewModel vm)
         {
             ViewModel = vm;
         }
@@ -28,7 +28,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            DataView view = MasterRepository._Token.GetAllAsView();
+            Utilities.DocumentUtils.SaveFile(ViewModel.FileInfo.Name, ViewModel.RawContent);
         }
     }
 }

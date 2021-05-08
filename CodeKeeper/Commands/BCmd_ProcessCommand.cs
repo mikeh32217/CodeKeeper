@@ -32,23 +32,14 @@ namespace CodeKeeper.Commands
 
         void ICommand.Execute(object parameter)
         {
-            //if (ViewModel.CurrentFile != null)
-            {
+            string file = @"K:\Projects - Visual Studio 2017\CodeKeeper\CodeKeeper\TestData\class.txt";
 
-                // TEST Remove when done testing
-                string file = @"K:\Projects - Visual Studio 2017\CodeKeeper\CodeKeeper\TestData\class.txt";
+            if (ViewModel.CurrentFile != null)
+                file = ViewModel.CurrentFile.Name;
 
-                // TODO Finish
-                PreviewOutputWindow win = new PreviewOutputWindow(new FileData(file)); //ViewModel.CurrentFile);
-                win.ShowDialog();
-            }
-            // TEST - Used when developing parse and insert methods.
-            //string path = @"K:\Projects - Visual Studio 2017\CodeKeeper\docs\test.txt";
-            //string opath = path + ".tmp";
-            //Utilities.DocumentUtils.ParseFile(path);
-            //Utilities.DocumentUtils.InsertTextInFile(opath, 0, "This is some really neat shit!\n");
-            //Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "!ahead");
-            //Utilities.DocumentUtils.InsertSnippetInFile(opath, 2, "filename");
+            // TODO Finish for testing
+            PreviewOutputWindow win = new PreviewOutputWindow(new FileData(file));
+            win.ShowDialog();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            File.WriteAllText(ViewModel.FileInfo.Name, ViewModel.RawContent);
+            Utilities.DocumentUtils.SaveFile(ViewModel.FileInfo.Name, ViewModel.RawContent);
         }
     }
 }

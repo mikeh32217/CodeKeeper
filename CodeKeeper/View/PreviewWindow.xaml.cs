@@ -37,5 +37,10 @@ namespace CodeKeeper.View
             ConfigMgr.Instance.settingProvider.SetValue(this.Name, "height", Height.ToString());
             ConfigMgr.Instance.configMgr.SaveConfigChanges();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

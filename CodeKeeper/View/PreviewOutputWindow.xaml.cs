@@ -28,6 +28,7 @@ namespace CodeKeeper.View
 
             ViewModal = new PreviewOutputWindowViewModel(this);
 
+            // NOTE Sent from the TagInfoSelectChangedCommand
             App.g_eventAggregator.GetEvent<TagClickEvent>().Subscribe(TagClickHandler);
 
             DataContext = ViewModal;

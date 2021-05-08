@@ -48,12 +48,13 @@ namespace CodeKeeper.UserControls
             // NOTE Do this becuase binding not done until after render
             this.Dispatcher.BeginInvoke((Action)(() => { RefreshTagList(); }));
 
+            // NOTE Received from BCmd_POW_Toolbar_Refresh command
             App.g_eventAggregator.GetEvent<TagRefreshEvent>().Subscribe(RefreshTagList);
 
             DataContext = this;
         }
 
-        public void RefreshTagList(UpdateMessage state = null)
+        public void RefreshTagList()
         {
             // At first go this will be null...duh!
             if (TagInfoList != null)

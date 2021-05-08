@@ -25,8 +25,9 @@ namespace CodeKeeper.Commands
             if (parameter == null)
                 return;
 
-            DirectoryMessage msg = new DirectoryMessage((TreeNode)parameter);
-            msg.NodeMsg.Type = TreeNode.DF_TYPE.File;
+            // NOTE Sent to MainWindowViewModel to update directory in treeview
+            TreeNodeMessage msg = new TreeNodeMessage((TreeNode)parameter);
+            msg.Node.Type = TreeNode.DF_TYPE.File;
             App.g_eventAggregator.GetEvent<DirectoryEvent>().Publish(msg);
         }
     }

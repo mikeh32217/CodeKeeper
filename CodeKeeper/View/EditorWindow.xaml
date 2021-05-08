@@ -15,11 +15,11 @@
         Width="{Binding WindowWidth, Mode=TwoWay}">
 
     <DockPanel Margin="0 0 0 5">
-        <Border Style="{StaticResource ToolBarContainer}" DockPanel.Dock="Top">
-            <StackPanel x:Name="TagEditorToolBar" Orientation="Horizontal">
+        <Border  DockPanel.Dock="Top" BorderBrush="SlateGray" BorderThickness="1" Height="38" Margin="3">
+            <ToolBar Style="{StaticResource ToolBarWithoutOverflowBarStyle}" Padding="5 2">
                 <Button Style="{StaticResource BorderlessButton}"
                 Command="{Binding BCmd_NewEditorCommand}">
-                    <Image Source="pack://application:,,,/Images/new.png"/>
+                    <Image Source="pack://application:,,,/Images/docnew.png"/>
                 </Button>
                 <Button Style="{StaticResource BorderlessButton}"
                 Command="{Binding BCmd_SaveEditorCommand}">
@@ -31,9 +31,9 @@
                 </Button>
                 <Button Style="{StaticResource BorderlessButton}"
                 Command="{Binding BCmd_PreviewCommand}">
-                    <Image Source="pack://application:,,,/Images/preview.png"/>
+                    <Image Source="pack://application:,,,/Images/process.png"/>
                 </Button>
-            </StackPanel>
+            </ToolBar>
         </Border>
         <Grid DockPanel.Dock="Bottom" >
             <Grid.ColumnDefinitions>
@@ -41,27 +41,7 @@
                 <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Border Visibility="Visible" BorderThickness="1" BorderBrush="LightSteelBlue">
-                <StackPanel Margin="3">
-                    <Separator Height="5"/>
-                    <Grid>
-                        <uc:TagListViewControl DisplaySnippet="True" />
-                        <!--<ListView DockPanel.Dock="Left" DataContext="{Binding SnippetView}"
-                              Name="SnippetListView"
-                              SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
-                                Path=DataContext.CurrentSnippet}"
-                                ItemsSource="{Binding}">
-                            <ListView.View>
-                                <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
-                                    <GridView.Columns>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tag}"/>
-                                    </GridView.Columns>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>-->
-                    </Grid>
-                </StackPanel>
-            </Border>
+            <uc:TagListViewControl DisplaySnippet="True" />
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
             <Grid DataContext="{Binding CurrentItem}" Grid.Column="2">
                 <Grid.RowDefinitions>

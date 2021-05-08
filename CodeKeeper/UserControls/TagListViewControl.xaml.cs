@@ -48,6 +48,7 @@ namespace CodeKeeper.UserControls
             UC_FilterTextChangedCommand = new UC_FilterTextChangedCommand();
             TagInfoSelectionChangedCommand = new TagInfoSelectionChangedCommand();
 
+            // NOTE Received from the UC_FilterTextChangedCommand command
             App.g_eventAggregator.GetEvent<TagListRefreshEvent>().Subscribe(FilterList);
 
             this.Dispatcher.BeginInvoke((Action)(() => { UpdateList(); }));

@@ -21,7 +21,7 @@ namespace CodeKeeper.ViewModel
 
         public BCmd_POW_Toolbar_Refresh BCmd_POW_Toolbar_Refresh { get; set; }
         public BCmd_POW_Toolbar_Process BCmd_POW_Toolbar_Process{ get; set; }
-        public BCmd_POW_Toolbar_Validate BCmd_POW_Toolbar_Validate { get; set; }
+        public BCmd_POW_Toolbar_Save BCmd_POW_Toolbar_Save { get; set; }
 
         // Invoke commands
         public TagInfoSelectionChangedCommand TagInfoSelectionChangedCommand { get; set; }
@@ -53,9 +53,10 @@ namespace CodeKeeper.ViewModel
             RawContent = Utilities.DocumentUtils.LoadFile(FileInfo.Name);
 
             TagInfoSelectionChangedCommand = new TagInfoSelectionChangedCommand(this);
+
             BCmd_POW_Toolbar_Refresh = new BCmd_POW_Toolbar_Refresh(this);
             BCmd_POW_Toolbar_Process = new BCmd_POW_Toolbar_Process(this);
-            BCmd_POW_Toolbar_Validate = new BCmd_POW_Toolbar_Validate(this);
+            BCmd_POW_Toolbar_Save = new BCmd_POW_Toolbar_Save(this);
         }
     }
 }

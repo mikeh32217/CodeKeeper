@@ -24,6 +24,8 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
+            // NOTE Sent to the TagListViewControl to update/refresh the Snippet or Tag list
+            //  depending on the DisplaySnippet  property.
             App.g_eventAggregator.GetEvent<TagListRefreshEvent>().Publish(new GenericMessage(parameter.ToString()));
         }
     }

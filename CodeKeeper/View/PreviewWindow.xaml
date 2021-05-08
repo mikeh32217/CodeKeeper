@@ -5,21 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
-        Icon="pack://application:,,,/Images/preview.png"
         WindowStartupLocation="CenterScreen"
         Title="Preview Window" 
         Name="Preview"
         Height="{Binding WindowHeight, Mode=TwoWay}" 
         Width="{Binding WindowWidth, Mode=TwoWay}">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="36"/>
-        </Grid.RowDefinitions>
-        <ScrollViewer Margin="10 5" VerticalScrollBarVisibility="Auto">
-            <TextBlock Text="{Binding Content}" TextWrapping="Wrap"></TextBlock>
+    <DockPanel>
+        <Border  DockPanel.Dock="Top" BorderBrush="Silver" BorderThickness="1" Padding="2">
+            <ToolBar Style="{StaticResource ToolBarWithoutOverflowBarStyle}" Padding="5 2">
+                <Button 
+                Command="{Binding BCmd_PW_Save}"
+                CommandParameter="{Binding ElementName=TbContent, Path=Text}" Height="22">
+                    <Image Source="pack://application:,,,/Images/save.png"/>
+                </Button>
+                <Button 
+                Command="{Binding BCmd_PW_CopyToClipboard}"
+                CommandParameter="{Binding ElementName=TbContent, Path=Text}" Height="22">
+                    <Image Source="pack://application:,,,/Images/copy.png"/>
+                </Button>
+            </ToolBar>
+        </Border>
+        <ScrollViewer DockPanel.Dock="Bottom"
+            Margin="10 5" VerticalScrollBarVisibility="Auto">
+            <TextBlock Name="TbContent" Text="{Binding Content}" TextWrapping="Wrap"></TextBlock>
         </ScrollViewer>
-        <Button IsCancel="True" Content="Close" Height="26" Grid.Row="1" Margin="10 0"/>
-    </Grid>
+    </DockPanel>
 </Window>

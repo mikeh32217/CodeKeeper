@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeKeeper.Commands;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,11 +13,18 @@ namespace CodeKeeper.ViewModel
     {
         public string Content { get; set; }
 
+        public BCmd_PW_CopyToClipboard BCmd_PW_CopyToClipboard { get; set; }
+        public BCmd_PW_Save BCmd_PW_Save { get; set; }
+
+
         public DataRowView CurrentItem { get; set; }
 
         public PreviewWindowViewModel(Window win, string content) : base(win)
         {
             Content = content;
+
+            BCmd_PW_CopyToClipboard = new BCmd_PW_CopyToClipboard(this);
+            BCmd_PW_Save = new BCmd_PW_Save(this);
         }
     }
 }

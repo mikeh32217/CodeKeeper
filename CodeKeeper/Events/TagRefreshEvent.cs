@@ -7,17 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeKeeper.Events
 {
-    public class TagRefreshEvent :  PubSubEvent<UpdateMessage>
+    public class TagRefreshEvent :  PubSubEvent
     {
-    }
-
-    public class UpdateMessage
-    {
-        public bool UpdateState { get; set; }
-
-        public UpdateMessage(bool state)
-        {
-            UpdateState = state;
-        }
     }
 }

@@ -32,7 +32,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            //((PreviewOutputWindow)ViewModel.ParentWindow).TagClickHandler((TagInfo)parameter);
+            // NOTE Sent tot he ProcessOutputWindow code behind TagClickHandler
             App.g_eventAggregator.GetEvent<TagClickEvent>().Publish(parameter as TagInfo);
         }
     }

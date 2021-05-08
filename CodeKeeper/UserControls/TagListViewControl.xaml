@@ -64,16 +64,9 @@
         <Label Grid.Row="1"/>
         <ListView Name="TagInfoListView"
                 DataContext="{Binding ItemView}" Grid.Row="2"
-                SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, 
+                SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
                 Path=DataContext.CurrentItem}"
                 ItemsSource="{Binding }">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, 
-                                Path=DataContext.TagInfoSelectionChangedCommand}"
-                            CommandParameter="{Binding ElementName=TagInfoListView, Path=SelectedItem}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
                     <GridView.Columns>

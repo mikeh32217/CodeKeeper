@@ -44,7 +44,7 @@ namespace CodeKeeper.Commands
                 DataRow row = MasterRepository._Token.GetById(id.ToString());
                 DataRowView selecRow = MasterRepository._Snippet.DefaultView.Cast<DataRowView>().FirstOrDefault(a => a.Row == row);
 
-                ViewModel.CurrentTag = selecRow;
+                ViewModel.CurrentItem = selecRow;
             }
         }
     }

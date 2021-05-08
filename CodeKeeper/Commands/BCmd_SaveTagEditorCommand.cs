@@ -31,7 +31,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-             MasterRepository._Token.UpdateTag(ViewModel.CurrentTag);
+             MasterRepository._Token.UpdateTag(ViewModel.CurrentItem);
         }
     }
 }

@@ -18,18 +18,18 @@ namespace CodeKeeper.ViewModel
         public BCmd_SaveTagEditorCommand BCmd_SaveTagEditorCommand { get; set; }
         public BCmd_DeleteTagEditorCommand BCmd_DeleteTagEditorCommand { get; set; }
 
-        private DataRowView _currentTag;
+        private DataRowView _currentItem;
 
-        public DataRowView CurrentTag
+        public DataRowView CurrentItem
         {
-            get { return _currentTag; }
-            set { SetProperty(ref _currentTag, value); }
+            get { return _currentItem; }
+            set { SetProperty(ref _currentItem, value); }
         }
 
         public TagEditorWindowViewModel(Window win) : base(win)
         {
             TagView = MasterRepository._Token.GetAllAsView();
-            CurrentTag = TagView[0];
+            CurrentItem = TagView[0];
 
             BCmd_NewTagEditorCommand = new BCmd_NewTagEditorCommand(this);
             BCmd_SaveTagEditorCommand = new BCmd_SaveTagEditorCommand(this);

@@ -32,9 +32,9 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            if (ViewModel.CurrentTag != null)
+            if (ViewModel.CurrentItem != null)
             {
-                if (!bool.Parse(ViewModel.CurrentTag["CanDelete"].ToString()))
+                if (!bool.Parse(ViewModel.CurrentItem["CanDelete"].ToString()))
                     MessageBox.Show("You cannot delete this Tag!", "No can do",
                         MessageBoxButton.OK,
                         MessageBoxImage.Hand);
@@ -44,7 +44,7 @@ namespace CodeKeeper.Commands
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        MasterRepository._Token.Delete(ViewModel.CurrentTag["TokenId"].ToString());
+                        MasterRepository._Token.Delete(ViewModel.CurrentItem["TokenId"].ToString());
                     }
                 }
             }

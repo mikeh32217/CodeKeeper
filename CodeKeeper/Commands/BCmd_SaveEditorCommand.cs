@@ -31,7 +31,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            MasterRepository._Snippet.UpdateSnippet(ViewModel.CurrentSnippet);
+            MasterRepository._Snippet.UpdateSnippet(ViewModel.CurrentItem);
         }
     }
 }

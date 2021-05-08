@@ -63,7 +63,7 @@
                 </StackPanel>
             </Border>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
-            <Grid DataContext="{Binding CurrentSnippet}" Grid.Column="2">
+            <Grid DataContext="{Binding CurrentItem}" Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="34"/>
                     <RowDefinition Height="34"/>

@@ -12,7 +12,7 @@ namespace CodeKeeper.ViewModel
     {
         public string Content { get; set; }
 
-        public DataRowView CurrentSnippet { get; set; }
+        public DataRowView CurrentItem { get; set; }
 
         public PreviewWindowViewModel(Window win, string content) : base(win)
         {

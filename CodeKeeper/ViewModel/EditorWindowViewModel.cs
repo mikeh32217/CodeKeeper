@@ -17,12 +17,12 @@ namespace CodeKeeper.ViewModel
         // TODO Impliment this!
         public bool Isirty { get; set; }
 
-        private DataRowView _currentSnippet;
+        private DataRowView _currentItem;
 
-        public DataRowView CurrentSnippet
+        public DataRowView CurrentItem
         {
-            get { return _currentSnippet; }
-            set { SetProperty(ref _currentSnippet, value); }
+            get { return _currentItem; }
+            set { SetProperty(ref _currentItem, value); }
         }
 
         public BCmd_NewEditorCommand BCmd_NewEditorCommand { get; set; }
@@ -36,7 +36,7 @@ namespace CodeKeeper.ViewModel
         {
             SnippetView = MasterRepository._Snippet.GetAllAsView();
             if (SnippetView.Table.DefaultView.Count > 0)
-                CurrentSnippet = SnippetView[0];
+                _currentItem = SnippetView[0];
             else
                 MessageBox.Show("No snippets available");
 

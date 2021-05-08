@@ -34,7 +34,7 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            if (ViewModel.CurrentSnippet == null)
+            if (ViewModel.CurrentItem == null)
                 return;
 
             string res = DoParse();
@@ -53,7 +53,7 @@ namespace CodeKeeper.Commands
 
         private string DoParse()
         {
-            DataRowView drv = ViewModel.CurrentSnippet;
+            DataRowView drv = ViewModel.CurrentItem;
 
             string content = drv["Content"].ToString();
             string str = Utilities.ParseUtils.ParseSnippet(content);

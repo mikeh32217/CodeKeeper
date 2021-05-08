@@ -32,13 +32,13 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            if (ViewModel.CurrentSnippet != null)
+            if (ViewModel.CurrentItem != null)
             {
                 if (MessageBox.Show("You are about to delete a snippet, continue?", "Continue?",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    MasterRepository._Snippet.Delete(ViewModel.CurrentSnippet["Id"].ToString());
+                    MasterRepository._Snippet.Delete(ViewModel.CurrentItem["Id"].ToString());
                 }
             }
         }

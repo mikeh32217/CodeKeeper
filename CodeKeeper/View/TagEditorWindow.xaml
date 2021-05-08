@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:CodeKeeper.UserControls"
         xmlns:local="clr-namespace:CodeKeeper.View"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -30,56 +31,43 @@
             </StackPanel>
         </Border>
         <DockPanel DockPanel.Dock="Bottom">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel Margin="3">
-                    <Label  Height="25" Content="Tags" 
-                            Background="{StaticResource HeaderLinearBrush}" 
-                            Foreground="{StaticResource TextBrush}" />
-                    <Separator Height="5"/>
-                    <ListView DataContext="{Binding TagView}"
-                                  Name="SnippetListView"
-                                  Width="180" 
-                                  SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, 
-                                  Path=DataContext.CurrentTag}"
-                                  ItemsSource="{Binding}">
-                        <ListView.View>
-                            <GridView ColumnHeaderContainerStyle="{StaticResource GridViewHeaderStyle}">
-                                <GridView.Columns>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tag}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </StackPanel>
-            </ScrollViewer>
-            <Grid DataContext="{Binding CurrentTag}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="34"/>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Margin="5 0">
-                    <Label VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Tag:</Label>
-                    <TextBox Padding="2 1 2 1" VerticalAlignment="Center" Width="120" Text="{Binding Tag}"/>
-                </StackPanel>
-                <Grid Margin="5 " Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label VerticalAlignment="Top"  FontSize="14" FontWeight="Bold">Description:</Label>
-                    <TextBox Padding="2 1 2 1" Grid.Column="1" 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <uc:TagListViewControl DisplaySnippet="False" />
+                <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
+                <Grid DataContext="{Binding CurrentTag}" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34"/>
+                        <RowDefinition Height="64"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="5 0">
+                        <Label VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Tag:</Label>
+                        <TextBox Padding="2 1 2 1" VerticalAlignment="Center" Width="120" Text="{Binding Tag}"/>
+                    </StackPanel>
+                    <Grid Margin="5 " Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label VerticalAlignment="Top"  FontSize="14" FontWeight="Bold">Description:</Label>
+                        <TextBox Padding="2 1 2 1" Grid.Column="1" 
                              AcceptsReturn="True"
                              TextWrapping="Wrap"   
                              Text="{Binding Description}"/>
-                </Grid>
-                <ScrollViewer DockPanel.Dock="Right" Grid.Row="2" Margin="5 0" VerticalScrollBarVisibility="Auto">
-                    <TextBox Name="tb" Padding="5"
+                    </Grid>
+                    <ScrollViewer DockPanel.Dock="Right" Grid.Row="2" Margin="5 0" VerticalScrollBarVisibility="Auto">
+                        <TextBox Name="tb" Padding="5"
                              AcceptsReturn="True"
                              TextWrapping="Wrap"
                              Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    </TextBox>
-                </ScrollViewer>
+                        </TextBox>
+                    </ScrollViewer>
+                </Grid>
             </Grid>
         </DockPanel>
     </DockPanel>

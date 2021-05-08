@@ -58,6 +58,10 @@
                     Command="{Binding BCmd_ProcessCommand}">
                     <Image Source="Images/process.png"/>
                 </Button>
+                <Button Style="{StaticResource BorderlessButton}"
+                    Command="{Binding BCmd_SandboxCommand}">
+                    <Image Source="Images/cleanup.png"/>
+                </Button>            
             </StackPanel>
         </Border>
         <Grid DockPanel.Dock="Bottom" Margin="5">

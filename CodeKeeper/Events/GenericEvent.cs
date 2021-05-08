@@ -12,6 +12,9 @@ namespace CodeKeeper.Events
 
     }
 
+    public class TagListRefreshEvent : PubSubEvent<GenericMessage>
+    {
+    }
     public class GenericMessage
     {
         public string Message { get; set; }

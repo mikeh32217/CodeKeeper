@@ -10,6 +10,7 @@
                 <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
                 <ResourceDictionary Source="pack://application:,,,/Resources/StyleDictionary.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Resources/ToolbarDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/FilterControlDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

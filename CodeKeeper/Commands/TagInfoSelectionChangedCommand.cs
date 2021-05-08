@@ -1,4 +1,5 @@
-﻿using CodeKeeper.Model;
+﻿using CodeKeeper.Events;
+using CodeKeeper.Model;
 using CodeKeeper.View;
 using CodeKeeper.ViewModel;
 using System;
@@ -31,7 +32,8 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            ((PreviewOutputWindow)ViewModel.ParentWindow).TagClickHandler((TagInfo)parameter);
+            // TODO Need to modify to call the appropriate handler
+            App.g_eventAggregator.GetEvent<TagRefreshEvent>().Publish(new UpdateMessage(true));
         }
     }
 }

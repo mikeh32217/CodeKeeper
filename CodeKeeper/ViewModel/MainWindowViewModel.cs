@@ -38,6 +38,7 @@ namespace CodeKeeper.ViewModel
         public BCmd_OpenTagEditorCommand BCmd_OpenTagEditorCommand { get; set; }
         public BCmd_OpenOptionsCommand BCmd_OpenOptionsCommand { get; set; }
         public BCmd_ProcessCommand BCmd_ProcessCommand { get; set; }
+        public BCmd_SandboxCommand BCmd_SandboxCommand { get; set; }
 
         public TreeViewSelectionChangedCommand TreeViewSelectionChangedCommand { get; set; }
 
@@ -55,6 +56,8 @@ namespace CodeKeeper.ViewModel
             BCmd_OpenTagEditorCommand = new BCmd_OpenTagEditorCommand();
             BCmd_OpenOptionsCommand = new BCmd_OpenOptionsCommand();
             BCmd_ProcessCommand = new BCmd_ProcessCommand(this);
+
+            BCmd_SandboxCommand = new BCmd_SandboxCommand(this);
 
             TreeViewSelectionChangedCommand = new TreeViewSelectionChangedCommand();
 

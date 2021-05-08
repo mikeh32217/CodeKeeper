@@ -56,9 +56,6 @@ namespace CodeKeeper.ViewModel
             BCmd_POW_Toolbar_Refresh = new BCmd_POW_Toolbar_Refresh(this);
             BCmd_POW_Toolbar_Process = new BCmd_POW_Toolbar_Process(this);
             BCmd_POW_Toolbar_Validate = new BCmd_POW_Toolbar_Validate(this);
-
-            // NOTE This loads the parsed file into the TextBox
-            //  LongText = Utilities.DocumentUtils.PreviewFile(win.FileInfo.Name);
         }
     }
 }

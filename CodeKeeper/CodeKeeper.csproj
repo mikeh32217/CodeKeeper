@@ -156,6 +156,7 @@
     <Compile Include="Configuration\Providers\ProviderBase.cs" />
     <Compile Include="Converters\HeaderToImageConverter.cs" />
     <Compile Include="Converters\TagTypeEnumToImageConverter.cs" />
+    <Compile Include="Events\TagClickEvent.cs" />
     <Compile Include="Events\DirectoryEvent.cs" />
     <Compile Include="Events\GenericEvent.cs" />
     <Compile Include="Behaviors\GridViewColumnResizeBehavior.cs" />

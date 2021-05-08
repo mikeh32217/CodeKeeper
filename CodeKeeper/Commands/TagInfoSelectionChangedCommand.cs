@@ -32,8 +32,8 @@ namespace CodeKeeper.Commands
 
         public void Execute(object parameter)
         {
-            // TODO Need to modify to call the appropriate handler
-            App.g_eventAggregator.GetEvent<TagRefreshEvent>().Publish(new UpdateMessage(true));
+            //((PreviewOutputWindow)ViewModel.ParentWindow).TagClickHandler((TagInfo)parameter);
+            App.g_eventAggregator.GetEvent<TagClickEvent>().Publish(parameter as TagInfo);
         }
     }
 }

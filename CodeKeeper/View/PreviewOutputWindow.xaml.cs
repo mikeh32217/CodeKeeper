@@ -1,4 +1,5 @@
 ﻿using CodeKeeper.Configuration;
+using CodeKeeper.Events;
 using CodeKeeper.Model;
 using CodeKeeper.ViewModel;
 using System;
@@ -26,6 +27,8 @@ namespace CodeKeeper.View
             FileInfo = file;
 
             ViewModal = new PreviewOutputWindowViewModel(this);
+
+            App.g_eventAggregator.GetEvent<TagClickEvent>().Subscribe(TagClickHandler);
 
             DataContext = ViewModal;
         }

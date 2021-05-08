@@ -54,7 +54,8 @@
                 <TextBox Name="FilterTextBox" Grid.Column="1" Padding="2 1 2 1" Margin="2 0" VerticalAlignment="Center">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="TextChanged">
-                            <i:InvokeCommandAction Command="{Binding UC_FilterTextChangedCommand}"
+                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},
+                                Path=UC_FilterTextChangedCommand}"
                                 CommandParameter="{Binding ElementName=FilterTextBox, Path=Text}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
